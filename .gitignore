@@ -1,0 +1,17 @@
+# environemnt variables
+.env
+
+# dist
+dist
+
+node_modules
+package-lock.json
+
+/logs
+/out
+/files
+target
+.project
+.settings
+backend/.classpath
+*.patch
