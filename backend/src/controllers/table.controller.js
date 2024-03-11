@@ -8,24 +8,12 @@ const Addresses = require('../models/table')
 const getAllAddress = async (req, res) => {
   const data = await Addresses.find();
   console.log('data  ',data);
-  res.send({data})
+  if (data.length > 0) {
+    res.send(data)
+  } else {
+    res.status(404).json({ message: "Not result"})
+  }
 }
-// const getAllAddress = async (req, res) => {
-//   // const addresses = await Addresses.find({});
- 
-//   console.log('=====hola====');
-
-//   res.send(addresses)
-//   const addresses = await Addresses.find();
-//   res.json(addresses);
-// };
-  // try {
-  //   const addr = await Addresses.find();
-  //   res.ok(addr);
-  // } catch (exception) {
-  //   console.error(exception);
-  // }
-// };
 
 /**
  * Obtener una dirección IP
@@ -37,34 +25,36 @@ const getAddress = (req, res) => {
   res.send({data})
 }; //TODO: implement
 
-const createAddress = async (req, res) => {
+const newAddress = async (req, res) => {
   //TODO: implement
   const { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other } = req.body;
-  const addr = new Addresses();
+  console.log('req.body  -> ',req.body);
+  try {
+    const addr = new Addresses(req.body);
+    console.log('req.body  -> ', addr);
+    // addr.nro = nro;
+    // addr.address = address;
+    // addr.grupo = grupo;
+    // addr.user = user;
+    // addr.pcname = pcname;
+    // addr.dependency = dependency;
+    // addr.opersystem = opersystem;
+    // addr.observ = observ;
+    // addr.type = type;
+    // addr.other = other;
+    // await addr.save();
+    res.status(201).send({status: 'Ok', data: addr.data});
 
-  addr.nro = nro;
-  addr.address = address;
-  addr.grupo = grupo;
-  addr.user = user;
-  addr.pcname = pcname;
-  addr.dependency = dependency;
-  addr.opersystem = opersystem;
-  addr.observ = observ;
-  addr.type = type;
-  addr.other = other;
-
-  const errors = await validate(addr);
-  if (errors.length > 0) {
-    return res.status(400).json(errors);
+  } catch (err) {
+    res.status(500).send({status: 'Error', message: "No se pudo crear la dirección IP"})
   }
-
  
 };
  
 const updateAddress = (req, res) => {}; //TODO: implement
 const deleteAddress = (req, res) => {}; //TODO: implement
 
-module.exports = { getAllAddress, getAddress, createAddress, updateAddress, deleteAddress }
+module.exports = { getAllAddress, getAddress, newAddress, updateAddress, deleteAddress }
 
 // Agrega una persona a la base
 // ctrlerAddress.addAddress = async (req, res, next) => {

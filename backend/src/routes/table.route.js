@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { getAllAddress, getAddress } = require('../controllers/table.controller.js')
+const { getAllAddress, getAddress, newAddress } = require('../controllers/table.controller.js')
 
 const router = Router();
 
@@ -8,8 +8,8 @@ router.get('/', getAllAddress);
 
 router.get('/:addressId', getAddress);
 
-// // new address
-// router.post('/', tableController.createOneAddress);
+// new address
+router.post('/', newAddress);
 
 // //Update address
 // router.patch('/:addressId', tableController.updateAddress);

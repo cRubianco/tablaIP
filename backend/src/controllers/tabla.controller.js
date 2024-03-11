@@ -10,9 +10,6 @@ export class TableController {
     } else {
       res.status(404).json({ message: "Not result"})
     }
-
-    // const allAddress = tablaService.getAllAddress();
-    // res.send("get all Address");
   }
 
   static getById = async (req, res) => {
