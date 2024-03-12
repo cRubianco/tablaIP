@@ -1,11 +1,14 @@
-const Addresses = require('../models/table')
+const { matchedData } = require('express-validator');
+
+const Addresses = require('../models/table.js');
+const { handleHttpError } = require('../utils/handleErrors.js');
 
 /**
  * Obtener todas las direcciones IP.
  * @param {*} req 
  * @param {*} res 
  */
-const getAllAddress = async (req, res) => {
+const getAllAddress = async (req, res, next) => {
   const data = await Addresses.find();
   console.log('data  ',data);
   if (data.length > 0) {
@@ -20,63 +23,29 @@ const getAllAddress = async (req, res) => {
  * @param {*} req 
  * @param {*} res 
  */
-const getAddress = (req, res) => {
-  const data = ["hola", "mundo"]
-  res.send({data})
-}; //TODO: implement
-
-const newAddress = async (req, res) => {
-  //TODO: implement
-  const { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other } = req.body;
-  console.log('req.body  -> ',req.body);
+const getAddress = async (req, res, next) => {
   try {
-    const addr = new Addresses(req.body);
-    console.log('req.body  -> ', addr);
-    // addr.nro = nro;
-    // addr.address = address;
-    // addr.grupo = grupo;
-    // addr.user = user;
-    // addr.pcname = pcname;
-    // addr.dependency = dependency;
-    // addr.opersystem = opersystem;
-    // addr.observ = observ;
-    // addr.type = type;
-    // addr.other = other;
-    // await addr.save();
-    res.status(201).send({status: 'Ok', data: addr.data});
+    const data = await Addresses.find();
+    res.send({data})
+  } catch (e) {
+    handleHttpError(res, e);
+  }  
+}; 
+
+const newAddress = async (req, res, next) => {
+  // { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other }
+  
+  try {
+    const body = matchedData(req)
+    const data = await Addresses.create(body);
+    res.send({data});
 
   } catch (err) {
-    res.status(500).send({status: 'Error', message: "No se pudo crear la dirección IP"})
+    handleHttpError(res, "ERROR_CREATE_ADDRESS");
   }
- 
 };
- 
-const updateAddress = (req, res) => {}; //TODO: implement
-const deleteAddress = (req, res) => {}; //TODO: implement
+
+const updateAddress = (req, res, next) => {}; //TODO: implement
+const deleteAddress = (req, res, next) => {}; //TODO: implement
 
 module.exports = { getAllAddress, getAddress, newAddress, updateAddress, deleteAddress }
-
-// Agrega una persona a la base
-// ctrlerAddress.addAddress = async (req, res, next) => {
-//   try {
-//     const addr = new Addresses({
-//       nro: req.body.nro,
-//       address: req.body.address,
-//       grupo: req.body.grupo,
-//       user: req.body.user,
-//       pcname: req.body.pcname,
-//       dependency: req.body.dependency,
-//       opersystem: req.body.opersystem,
-//       observ: req.body.observ,
-//       type: req.body.type,
-//       other: req.body.other,
-//     });
-   
-//     await addr.save();
-//     res.created(addr);
-//   } catch (exception) {
-//     res.internalServerError();
-//   }
-// };
-
-// module.exports = ctrlerAddress;

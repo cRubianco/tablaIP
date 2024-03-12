@@ -4,7 +4,7 @@ const { Schema, model } = require('mongoose')
   {
     nro: {type: Number, required: true, unique: true},
     address: {type: String, required: true, unique: true},
-    grupo: {type: String, required: true},
+    group: {type: String, required: true},
     user: {type: String },
     pcname: {type: String},
     dependency: {type: String},
