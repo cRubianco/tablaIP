@@ -2,15 +2,19 @@ const { check } = require('express-validator');
 const validateResults = require('../utils/validate.js')
 
 const validAddress = [
-  check("nro").exists().isNumeric().notEmpty(),
-  check("address").exists().isIP().notEmpty(),
-  check("grupo").exists().isAlpha().notEmpty(),
-  
+  check("nro").notEmpty().isNumeric().exists(),
+  check("address").notEmpty().exists().isIP(),
+  check("group").notEmpty().exists(),
+  check("user"), 
+  check("pcname"), 
+  check("dependency"), 
+  check("opersystem"), 
+  check("observ"), 
+  check("type"), 
+  check("other"), 
   (req, res, next) => {
     return validateResults(req, res, next);
   }
-
 ];
-
 
 module.exports = { validAddress }
