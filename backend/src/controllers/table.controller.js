@@ -25,10 +25,13 @@ const getAllAddress = async (req, res, next) => {
  */
 const getAddress = async (req, res, next) => {
   try {
-    const data = await Addresses.find();
+    req = matchedData(req);
+    console.log('===HOLA mundo ====',req);
+    const {id} = req;
+    const data = await Addresses.findOne(id);
     res.send({data})
   } catch (e) {
-    handleHttpError(res, e);
+    handleHttpError(res, "ERROR_GET_ADDRESS");
   }  
 }; 
 
@@ -45,7 +48,7 @@ const newAddress = async (req, res, next) => {
   }
 };
 
-const updateAddress = (req, res, next) => {}; //TODO: implement
-const deleteAddress = (req, res, next) => {}; //TODO: implement
+const updateAddress = async (req, res, next) => {}; //TODO: implement
+const deleteAddress = async (req, res, next) => {}; //TODO: implement
 
 module.exports = { getAllAddress, getAddress, newAddress, updateAddress, deleteAddress }

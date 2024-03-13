@@ -1,15 +1,23 @@
 const { Router } = require('express')
 
 const { getAllAddress, getAddress, newAddress } = require('../controllers/table.controller.js');
-const { validAddress } = require('../utils/validateAddress.js');
+const { validAddress, validateOneAddress } = require('../utils/validateAddress.js');
 
 const router = Router();
 
+/**
+ * Lista todas las direcciones IP
+ */
 router.get('/', getAllAddress);
 
-router.get('/:addressId', getAddress);
+/**
+ * Lista una dirección IP
+ */
+router.get('/:id', validateOneAddress , getAddress);
 
-// new address
+/**
+ * Crea una nueva dirección IP
+ */
 router.post('/', validAddress, newAddress);
 
 // //Update address
