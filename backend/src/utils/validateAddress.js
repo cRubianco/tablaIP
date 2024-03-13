@@ -25,7 +25,7 @@ const validateAddressId = [
 ];
 
 const validateIPAddress = [
-  check("id").notEmpty().exists().isIP(),
+  check("address").notEmpty().exists().isIP(),
   (req, res, next) => {
     return validateResults(req, res, next);
   }

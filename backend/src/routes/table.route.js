@@ -18,7 +18,7 @@ router.get('/:id', validateAddressId , getAddress);
 /**
  * Lista una dirección IP
  */
-router.get('/:ip', validateIPAddress , getIPAddress);
+router.get('/ip/:address', validateIPAddress, getIPAddress);
 
 /**
  * Crea una nueva dirección IP

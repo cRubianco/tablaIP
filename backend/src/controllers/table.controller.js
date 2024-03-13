@@ -18,7 +18,7 @@ const getAllAddress = async (req, res, next) => {
 }
 
 /**
- * Obtener una dirección IP
+ * Obtener una dirección IP por ID
  * @param {*} req 
  * @param {*} res 
  */
@@ -33,18 +33,14 @@ const getAddress = async (req, res, next) => {
 }; 
 
 /**
- * Obtener una dirección IP
+ * Obtener una dirección IP por IP
  * @param {*} req 
  * @param {*} res 
  */
 const getIPAddress = async (req, res, next) => {
   try {
-    console.log('===HOLA IP ====');
-    const body = req.body;
-    const cleanBody = matchedData(req);
-    console.log('===HOLA IP ====',req);
-    const {id} = req;
-    const data = await Addresses.findOne(id);
+    const body = matchedData(req);
+    const data = await Addresses.findOne(body);
     res.send({data})
   } catch (e) {
     handleHttpError(res, "ERROR_GET_IP_ADDRESS");
