@@ -4,7 +4,7 @@ const validateResults = require('../utils/validate.js')
 const validAddress = [
   check("nro").notEmpty().isNumeric().exists(),
   check("address").notEmpty().exists().isIP(),
-  check("group").notEmpty().exists(),
+  check("group").notEmpty(),
   check("user"), 
   check("pcname"), 
   check("dependency"), 
@@ -31,4 +31,21 @@ const validateIPAddress = [
   }
 ];
 
-module.exports = { validAddress, validateAddressId, validateIPAddress }
+validateUpdateAddress = [
+  check("nro").notEmpty().isNumeric().exists(),
+  check("address").notEmpty().exists().isIP(),
+  check("group"),
+  check("user"), 
+  check("pcname"), 
+  check("dependency"), 
+  check("opersystem"), 
+  check("observ"), 
+  check("type"), 
+  check("other"), 
+  (req, res, next) => {
+    return validateResults(req, res, next);
+  }  
+];
+
+
+module.exports = { validAddress, validateAddressId, validateIPAddress, validateUpdateAddress }

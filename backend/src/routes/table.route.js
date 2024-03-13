@@ -1,7 +1,7 @@
 const { Router } = require('express')
 
-const { getAllAddress, getAddress, getIPAddress, newAddress } = require('../controllers/table.controller.js');
-const { validAddress, validateAddressId, validateIPAddress } = require('../utils/validateAddress.js');
+const { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress } = require('../controllers/table.controller.js');
+const { validAddress, validateAddressId, validateIPAddress, validateUpdateAddress } = require('../utils/validateAddress.js');
 
 const router = Router();
 
@@ -25,10 +25,12 @@ router.get('/ip/:address', validateIPAddress, getIPAddress);
  */
 router.post('/', validAddress, newAddress);
 
-// //Update address
-// router.patch('/:addressId', tableController.updateAddress);
+/**
+ * Actualiza una dirección IP
+ */
+router.put('/:id', validateAddressId, validateUpdateAddress, updateAddress);
 
 // //Delete address
-// router.delete('/:addressId', tableController.deleteOneAddress);
+// router.delete('/:addressId', deleteAddress);
  
 module.exports = router;

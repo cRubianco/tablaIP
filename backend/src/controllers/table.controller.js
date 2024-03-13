@@ -48,8 +48,7 @@ const getIPAddress = async (req, res, next) => {
 }; 
 
 const newAddress = async (req, res, next) => {
-  // { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other }
-  
+  // { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other } 
   try {
     const body = matchedData(req)
     const data = await Addresses.create(body);
@@ -60,7 +59,22 @@ const newAddress = async (req, res, next) => {
   }
 };
 
-const updateAddress = async (req, res, next) => {}; //TODO: implement
+const updateAddress = async (req, res, next) => {
+  try {
+    const id = req.body._id;
+    const body = req.body
+    
+    // const bodyClean = matched(req)
+
+    const data = await Addresses.findOneAndUpdate(
+      id, body
+    );
+    res.send({data});
+  } catch (err) {
+    handleHttpError(res, "ERROR_UPDATE_ADDRESS");
+  }
+}; 
+
 const deleteAddress = async (req, res, next) => {}; //TODO: implement
 
 module.exports = { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress, deleteAddress }
