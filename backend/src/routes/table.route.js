@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress } = require('../controllers/table.controller.js');
+const { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress, deleteAddress } = require('../controllers/table.controller.js');
 const { validAddress, validateAddressId, validateIPAddress, validateUpdateAddress } = require('../utils/validateAddress.js');
 
 const router = Router();
@@ -31,6 +31,6 @@ router.post('/', validAddress, newAddress);
 router.put('/:id', validateAddressId, validateUpdateAddress, updateAddress);
 
 // //Delete address
-// router.delete('/:addressId', deleteAddress);
+router.delete('/:id', validateAddressId, deleteAddress);
  
 module.exports = router;

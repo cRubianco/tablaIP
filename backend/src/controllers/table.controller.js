@@ -63,9 +63,7 @@ const updateAddress = async (req, res, next) => {
   try {
     const id = req.body._id;
     const body = req.body
-    
     // const bodyClean = matched(req)
-
     const data = await Addresses.findOneAndUpdate(
       id, body
     );
@@ -75,6 +73,14 @@ const updateAddress = async (req, res, next) => {
   }
 }; 
 
-const deleteAddress = async (req, res, next) => {}; //TODO: implement
+const deleteAddress = async (req, res, next) => {
+  try {
+    const body = matchedData(req);
+    const data = await Addresses.deleteOne({_id:body.id});
+    res.send({data})
+  } catch (e) {
+    handleHttpError(res, "ERROR_DELETE_ADDRESS");
+  }   
+}; 
 
 module.exports = { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress, deleteAddress }
