@@ -9,12 +9,11 @@ const { handleHttpError } = require('../utils/handleErrors.js');
  * @param {*} res 
  */
 const getAllAddress = async (req, res, next) => {
-  const data = await Addresses.find();
-  console.log('data  ',data);
-  if (data.length > 0) {
+  try {
+    const data = await Addresses.find();
     res.send(data)
-  } else {
-    res.status(404).json({ message: "Not result"})
+  } catch (err) {
+    handleHttpError(res, "ERROR_GET_ADDRESSES");
   }
 }
 
@@ -25,13 +24,30 @@ const getAllAddress = async (req, res, next) => {
  */
 const getAddress = async (req, res, next) => {
   try {
-    req = matchedData(req);
-    console.log('===HOLA mundo ====',req);
+    const body = matchedData(req);
+    const data = await Addresses.findById(body.id);
+    res.send({data})
+  } catch (e) {
+    handleHttpError(res, "ERROR_GET_ADDRESS");
+  }  
+}; 
+
+/**
+ * Obtener una dirección IP
+ * @param {*} req 
+ * @param {*} res 
+ */
+const getIPAddress = async (req, res, next) => {
+  try {
+    console.log('===HOLA IP ====');
+    const body = req.body;
+    const cleanBody = matchedData(req);
+    console.log('===HOLA IP ====',req);
     const {id} = req;
     const data = await Addresses.findOne(id);
     res.send({data})
   } catch (e) {
-    handleHttpError(res, "ERROR_GET_ADDRESS");
+    handleHttpError(res, "ERROR_GET_IP_ADDRESS");
   }  
 }; 
 
@@ -51,4 +67,4 @@ const newAddress = async (req, res, next) => {
 const updateAddress = async (req, res, next) => {}; //TODO: implement
 const deleteAddress = async (req, res, next) => {}; //TODO: implement
 
-module.exports = { getAllAddress, getAddress, newAddress, updateAddress, deleteAddress }
+module.exports = { getAllAddress, getAddress, getIPAddress, newAddress, updateAddress, deleteAddress }

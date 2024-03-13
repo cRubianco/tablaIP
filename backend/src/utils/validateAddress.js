@@ -17,11 +17,18 @@ const validAddress = [
   }
 ];
 
-const validateOneAddress = [
-  check("address").notEmpty().exists().isIP(),
+const validateAddressId = [
+  check("id").notEmpty().exists(),
   (req, res, next) => {
     return validateResults(req, res, next);
   }
 ];
 
-module.exports = { validAddress, validateOneAddress }
+const validateIPAddress = [
+  check("id").notEmpty().exists().isIP(),
+  (req, res, next) => {
+    return validateResults(req, res, next);
+  }
+];
+
+module.exports = { validAddress, validateAddressId, validateIPAddress }
