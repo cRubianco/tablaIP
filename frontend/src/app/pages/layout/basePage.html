@@ -1,0 +1,60 @@
+<mat-sidenav-container fullscreen class="mat-typography">
+
+    <!--   SIDEBAR -->
+    <mat-sidenav #sidenav mode="side" class="sidebar" [opened]="sidenavOpened()"
+        [mode]="sidenavOpened() ? 'side' : 'over'" >
+        <!-- [mode]="sidenavOpened() ? 'side' : 'over'" [ngStyle]="{'display': !authService.isLogged() ? 'none' : 'block' }"> -->
+        <div id="logoFull" fxLayout="row" fxLayoutAlign="center center">
+            <img id="logof" alt="logo IP" width="150px" src="">
+        </div>
+
+        <!-- profile -->
+        <div class="profile" >
+        <!-- <div class="profile" *ngIf="authService.isLogged()"> -->
+            <div fxLayout="row wrap" fxLayoutAlign="center end">
+
+                <div fxFlex="65" style="line-height: 90%;">
+                    <p id="userName" style="font-size: 1rem;"> 
+                    </p>
+                    <h3>USERNAME</h3>
+                </div>
+                <!-- <div fxFlex="65" style="line-height: 90%;">
+                    <p id="userName" style="font-size: 1rem;">
+                        {{authService.getUser().user}}</p>
+                    <p id="userRole" style=" font-size: .875rem"> {{getRole()}}</p>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- menu -->
+        <mat-nav-list>
+            <mat-list-item *ngFor="let menu of authService.getMenu()"  
+                [routerLinkActive]="['menuActive']" >
+                <span class="itemName">uno</span>
+            </mat-list-item>
+            <mat-icon class="resizeIcon" >algo menos</mat-icon>
+            <span class="itemName">algo</span>
+            <!-- <mat-list-item *ngFor="let menu of authService.getMenu()" [routerLink]="menu.link"
+                [routerLinkActive]="['menuActive']" skipLocationChange>
+                <mat-icon class="resizeIcon" [svgIcon]="menu.icon" [matTooltip]="menu.name"></mat-icon>
+                <span class="itemName">{{menu.name}}</span>
+            </mat-list-item> -->
+
+        </mat-nav-list>
+        <!-- <div fxLayout="row" style="margin-top:1.5vh">
+            <img alt="logo " width="48vw"  src="assets/icons/logo.svg">
+        </div> -->
+    </mat-sidenav>
+    <!-- LAYOUT -->
+    <div id="layoutPrincipal" fxLayout="column" fxFlexFill>
+        <!-- <layout-header *ngIf="this.authService.isLogged()" [sidenav]="sidenav"></layout-header> -->
+        <layout-header ></layout-header>
+        <!-- <main class="content" [ngStyle]="{'padding': sidenavOpened() ? '20px' : '0px' }">
+            <router-outlet></router-outlet>
+        </main> -->
+        <!-- <layout-footer *ngIf="this.authService.isLogged()" ></layout-footer> -->
+        <router-outlet></router-outlet>
+        <layout-footer ></layout-footer>
+    </div>
+
+</mat-sidenav-container>
