@@ -1,18 +1,13 @@
-import { DatePipe } from "@angular/common";
-import { APP_INITIALIZER, NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from "./app.component";
-import { MaterialModule } from "./material.module";
-import { RoutingModule } from "./routing.module";
-import { ServicesModule } from "./services.module";
-import { BrowserModule } from "@angular/platform-browser";
-import { BasePage } from "@pages/layout/basePage";
-import { Footer } from "@pages/layout/footer";
-import { Header } from "@pages/layout/header";
-import { SafePipe } from "./pipes/SafePipe";
-import { UpperCaseDirective } from "@directives/UpperCaseDirective";
-import { AddressesPage } from "@pages/addressesPage";
+import { RoutingModule } from './routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material.module';
+import { ServicesModule } from './services.module';
 
 export function initializeApp() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -21,27 +16,21 @@ export function initializeApp() {
 
 @NgModule({
   declarations: [
-    //--- pipes ---
-    SafePipe,
-    //--- directivas ---
-    UpperCaseDirective,
-    BasePage, Footer, Header, 
-    //------ components ----
-    AppComponent,
-    AddressesPage,
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, //modulo http
     RoutingModule,
+    BrowserAnimationsModule,
+    HttpClientModule, //modulo http
+    ReactiveFormsModule, //modulo formularios reactivos
     MaterialModule,
     ServicesModule, //modulo servicios
   ],
   providers: [
     {provide: APP_INITIALIZER,useFactory: initializeApp, multi: true},
-    DatePipe
+
   ],
-  bootstrap: [BasePage]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
