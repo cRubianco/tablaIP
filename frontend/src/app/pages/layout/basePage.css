@@ -40,15 +40,10 @@
 mat-icon {
   width: 35px;
 }
+
 ::ng-deep layout-header {
     margin-left: 0rem;
 }
-/*Cambio tamaño sidebav*/
-#userName,
-#userRole {
-  display: block !important;
-}
-
 #logoFull {
   margin: 1.5rem;
 }

@@ -2,9 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { OnDestroyMixin } from "@w11k/ngx-componentdestroyed";
 import { MatSidenav } from '@angular/material/sidenav';
 
-import { UtilService } from "@services/utilService";
 import { Animations } from "@components/animations";
-import { Constants } from '@utils/constants';
 
 
 /**
@@ -27,7 +25,7 @@ export class Header extends OnDestroyMixin implements OnInit {
    * constructor
    * @param utilService
    */
-  constructor(private utilService: UtilService) {
+  constructor() {
     super();
   }
 
@@ -36,22 +34,5 @@ export class Header extends OnDestroyMixin implements OnInit {
    */
   ngOnInit() {
   }
-
-  //======================== metodos ======================
-
-  /**
-   * mostrar  / ocultar la barra
-   */
-  toggleSideBar(): void {
-    this.sidenav.toggle().then();
-  }
-
-  /**
-   * salir
-   */
-  async logout() {
-    this.utilService.navigate(Constants.URL.LOGIN);
-    window.location.reload();
-  };
 
 }

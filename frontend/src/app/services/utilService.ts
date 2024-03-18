@@ -49,10 +49,10 @@ export class UtilService {
   linkNavigate(linkAction: LinkAction, linkId:string) {
     switch (linkAction) {
       case LinkAction.RENTAL:
-        if (this.router.url === "/" + Constants.URL.RENTALS)
-          this.router.navigate(["/"+Constants.URL.DASHBOARD]).then(() => this.navigate(Constants.URL.RENTALS, {linkId: linkId}));
+        if (this.router.url === "/" + Constants.URL.ADDRESSES)
+          this.router.navigate(["/"+Constants.URL.DASHBOARD]).then(() => this.navigate(Constants.URL.ADDRESSES, {linkId: linkId}));
         else
-          this.navigate(Constants.URL.RENTALS, {linkId: linkId});
+          this.navigate(Constants.URL.ADDRESSES, {linkId: linkId});
         break;
     }
   }

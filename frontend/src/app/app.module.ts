@@ -12,6 +12,7 @@ import { ServicesModule } from './services.module';
 import { BasePage } from '@pages/layout/basePage';
 import { Footer } from '@pages/layout/footer';
 import { Header } from '@pages/layout/header';
+import { AddressesPage } from '@pages/addressesPage';
 
 export function initializeApp() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -23,15 +24,17 @@ export function initializeApp() {
     AppComponent,
     // --- pages ---
     BasePage, Footer, Header,
+    AddressesPage,
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     BrowserAnimationsModule,
     HttpClientModule, //modulo http
-    ReactiveFormsModule, //modulo formularios reactivos
     MaterialModule,
+    ReactiveFormsModule, //modulo formularios reactivos
     ServicesModule, //modulo servicios
+
   ],
   providers: [
     {provide: APP_INITIALIZER,useFactory: initializeApp, multi: true},

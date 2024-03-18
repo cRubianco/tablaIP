@@ -1,24 +1,9 @@
-::ng-deep .mat-toolbar{
-  background: #424242 !important;
-  color: #fff;
-}
 .toolbar {
   height: 40px;
   justify-content:space-between;
   display: flex;
 }
-::ng-deep .menuNotifications { /* piso el ancho maximo del menu */
-  max-width: 400px !important;
-  min-height: 0px !important;
-}
 
-::ng-deep .menuNotification { /* permito multilinea */
-  line-height: 18px !important;
-  height: auto !important;
-  font-size: 12px !important;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 .btn-delete-all{
   margin-right: 13px;
   font-size: 12px;
@@ -31,10 +16,4 @@
 }
 .no-notifications{
   cursor: default;
-}
-.no-notifications ::ng-deep .mat-button-focus-overlay {
-  background-color: transparent;
-}
-.no-notifications ::ng-deep .mat-ripple{
-  display: none;
 }

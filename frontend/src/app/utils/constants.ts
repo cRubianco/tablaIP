@@ -10,8 +10,7 @@ import * as moment from "moment";
       API_PATH:"/api/",
       DASHBOARD:"dashboard",
       LOGIN: "login",
-      CLIENTS:"clients",
-      RENTALS:"rentals",
+      ADDRESSES:"addresses",
       REDIRECT: "redirect",
     },
 
