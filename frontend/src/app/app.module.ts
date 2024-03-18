@@ -1,13 +1,17 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { RoutingModule } from './routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
+import { RoutingModule } from './routing.module';
+import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { ServicesModule } from './services.module';
+import { BasePage } from '@pages/layout/basePage';
+import { Footer } from '@pages/layout/footer';
+import { Header } from '@pages/layout/header';
 
 export function initializeApp() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -16,7 +20,9 @@ export function initializeApp() {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // --- pages ---
+    BasePage, Footer, Header,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +35,8 @@ export function initializeApp() {
   ],
   providers: [
     {provide: APP_INITIALIZER,useFactory: initializeApp, multi: true},
-
+    DatePipe
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [BasePage]
 })
 export class AppModule { }
