@@ -15,6 +15,7 @@ import { IconRegistry } from '@utils/iconRegistry';
   styleUrls: ['./basePage.css'],
 })
 export class BasePage extends OnDestroyMixin {
+  title: string = 'Direcciones IP';
   screenWidth: number;
 
   constructor(private utilService: UtilService, private matIconRegistry: MatIconRegistry, 

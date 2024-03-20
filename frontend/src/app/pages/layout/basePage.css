@@ -2,6 +2,11 @@
   color: rgba(0, 255, 115, 0.43);
 }
 
+.profile {
+  color: #ffffff;
+  background:#9C27B0
+}
+
 .sidebar {
   width: 190px;
   color: rgb(251, 248, 248);
@@ -19,6 +24,7 @@
 }
 
 ::ng-deep .mat-sidenav .profile {
+  color: #9C27B0;
   margin: 10px 0px;
   padding: 0.5rem;
   border-top: 1px solid;
@@ -39,72 +45,6 @@
 
 mat-icon {
   width: 35px;
-}
-
-::ng-deep layout-header {
-    margin-left: 0rem;
-}
-#logoFull {
-  margin: 1.5rem;
-}
-
-#logoMini {
-  width: 0;
-}
-
-#logoFull img#logof {
-  width: 150px;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #logoFull {
-  margin: 0 !important;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #logoFull img#logof {
-  width: 0px !important;
-}
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #logoFull img#logoMini{
-    width: 35% !important;
-    margin: 1rem !important;
-}
-::ng-deep mat-sidenav:not(.mat-drawer-opened) .mat-list-item-content .mat-icon {
-  margin-right: 0 !important;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #avatarUser {
-  max-width: 80% !important;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) {
-  transform: translate3d(0, 0, 0) !important;
-  visibility: visible !important;
-  width: 70px !important;
-  overflow: hidden !important;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) .itemName {
-  display: none;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #userName {
-  display: none !important;
-}
-
-::ng-deep mat-sidenav:not(.mat-drawer-opened) #userRole {
-  display: none !important;
-}
-
-/* ::ng-deep mat-sidenav-container #layoutPrincipal {
-    margin-left: 0px!important;
-} */
-::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
-::ng-deep mat-sidenav-content #layoutPrincipal ::ng-deep layout-header header mat-toolbar #menu {
-    margin-left: 74px!important
-  
-}
-::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
-::ng-deep mat-sidenav-content #layoutPrincipal .content:nth-child(2){
-    margin-left: 60px !important;
 }
 
 

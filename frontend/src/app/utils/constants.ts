@@ -8,6 +8,7 @@ import * as moment from "moment";
 
     URL: {
       API_PATH:"/api/",
+      TITLE: 'Tabla de IP',
       DASHBOARD:"dashboard",
       LOGIN: "login",
       ADDRESSES:"addresses",

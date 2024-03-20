@@ -11,6 +11,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 
 import { MatPaginatorIntlES } from '@utils/matPaginatorIntlES';
 
@@ -26,11 +27,11 @@ const modules=[
   //componentes angular material
   MatToolbarModule, MatIconModule,
   MatDialogModule, MatSidenavModule, MatCardModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatTableModule,
   //   MatListModule, MatProgressBarModule, 
   //  MatButtonModule, MatExpansionModule, MatSelectModule, MatTooltipModule, MatProgressSpinnerModule,
   //  MatFormFieldModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule,
-  // MatTableModule,  MatSortModule, MatDatepickerModule, MatMomentDateModule, MatRadioModule,
+  //   MatSortModule, MatDatepickerModule, MatMomentDateModule, MatRadioModule,
   // MatTabsModule, DragDropModule, MatSlideToggleModule, MatChipsModule, MatBadgeModule, 
   // MatMenuModule, MatNativeDateModule,
   //angular material cdk
