@@ -4,16 +4,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroupDirective, FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatIconModule} from "@angular/material/icon";
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import {MatCardModule} from "@angular/material/card";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 import { MatPaginatorIntlES } from '@utils/matPaginatorIntlES';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 // import {MatPaginatorIntlES} from "@utils/matPaginatorIntlES";
 
@@ -25,11 +28,11 @@ const modules=[
   FlexLayoutModule, //flex
   FormsModule,
   //componentes angular material
-  MatToolbarModule, MatIconModule,
-  MatDialogModule, MatSidenavModule, MatCardModule,
-  MatPaginatorModule, MatTableModule,
-  //   MatListModule, MatProgressBarModule, 
-  //  MatButtonModule, MatExpansionModule, MatSelectModule, MatTooltipModule, MatProgressSpinnerModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatProgressBarModule,
+  MatPaginatorModule, MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule, 
+  
+  //   MatListModule,  
+  //   MatExpansionModule, MatSelectModule, MatProgressSpinnerModule,
   //  MatFormFieldModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule,
   //   MatSortModule, MatDatepickerModule, MatMomentDateModule, MatRadioModule,
   // MatTabsModule, DragDropModule, MatSlideToggleModule, MatChipsModule, MatBadgeModule, 
