@@ -11,7 +11,7 @@ import {LinkAction} from "@model/enum/linkAction";
  * Servicio de utilidades
  */
 @Injectable()
-export class UtilService {
+export class UtilServices {
 
   /**
    * constructor
@@ -48,7 +48,7 @@ export class UtilService {
    */
   linkNavigate(linkAction: LinkAction, linkId:string) {
     switch (linkAction) {
-      case LinkAction.RENTAL:
+      case LinkAction.ADDRESSES:
         if (this.router.url === "/" + Constants.URL.ADDRESSES)
           this.router.navigate(["/"+Constants.URL.DASHBOARD]).then(() => this.navigate(Constants.URL.ADDRESSES, {linkId: linkId}));
         else

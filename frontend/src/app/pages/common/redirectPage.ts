@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {UtilService} from "@services/utilService";
+import {UtilServices} from "@services/utilServices";
 
 /**
  * para abrir pantalla en nueva solapa
@@ -14,7 +14,7 @@ export class RedirectPage implements OnInit {
    * constructor
    * @param utilService
    */
-  constructor(private utilService:UtilService) {
+  constructor(private utilServices:UtilServices) {
   }
 
   /**
@@ -22,7 +22,7 @@ export class RedirectPage implements OnInit {
    */
   ngOnInit(): void {
     //redirecciono a donde corresponda, si no hay pagina definida cierro la solapa
-    if (!this.utilService.redirect()) window.close();
+    if (!this.utilServices.redirect()) window.close();
   }
 
 }

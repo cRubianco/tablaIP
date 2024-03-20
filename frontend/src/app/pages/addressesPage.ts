@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { AddressesService } from '@services/addressesService';
-import { UtilService } from '@services/utilService';
-import { environment } from 'src/enviroments/enviroment';
+import { UtilServices } from '@services/utilServices';
 
 @Component({
   selector: 'app-addresses',
@@ -19,14 +17,14 @@ export class AddressesPage implements OnInit {
   /**
    * constructor
    */
-  constructor(private addressesService: AddressesService, protected utilsService: UtilService) { }
+  constructor(private addressesService: AddressesService) { }
   
   
   ngOnInit(): void {
-    this.addressesService.getAddresses().subscribe(
-      res => console.log(res),
-      err => console.log(err)
-    )
+    this.addressesService.getAddresses().subscribe({
+      next: res => console.log(res),
+      error: err => console.log(err)
+    })
   }; 
 
 

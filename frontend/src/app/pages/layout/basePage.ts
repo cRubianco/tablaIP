@@ -3,7 +3,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {OnDestroyMixin, untilComponentDestroyed,} from '@w11k/ngx-componentdestroyed';
 import {MatIconRegistry} from "@angular/material/icon";
 
-import { UtilService } from '@services/utilService';
+import { UtilServices } from '@services/utilServices';
 import { IconRegistry } from '@utils/iconRegistry';
 
 /**
@@ -18,7 +18,7 @@ export class BasePage extends OnDestroyMixin {
   title: string = 'Direcciones IP';
   screenWidth: number;
 
-  constructor(private utilService: UtilService, private matIconRegistry: MatIconRegistry, 
+  constructor(private utilServices: UtilServices, private matIconRegistry: MatIconRegistry, 
       private domSanitizer: DomSanitizer ) {
       super();
       // set screenWidth on page load

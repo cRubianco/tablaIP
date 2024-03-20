@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { UtilService } from './services/utilService';
+import { UtilServices } from './services/utilServices';
 import { I18nService } from './services/i18nService';
 import { AddressesService } from '@services/addressesService';
 
@@ -23,7 +22,7 @@ import { AddressesService } from '@services/addressesService';
       // provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true
     // },
     // servicios utilidades
-    UtilService, I18nService, AddressesService,
+    UtilServices, I18nService, AddressesService,
   
     // servicios navegacione
     // DirectAccessGuard, CanDeactivateGuard, DirectAccessAllow,

@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { UtilService } from "./utilService";
-import { Constants } from "@utils/constants";
 import { environment } from "src/enviroments/enviroment";
+import { Constants } from "@utils/constants";
 
 @Injectable()
 export class AddressesService {
@@ -13,7 +12,7 @@ export class AddressesService {
     protected baseUrl:string=environment.SERVER+Constants.URL.API_PATH;
     protected name: string="Dirección IP";
 
-    constructor(protected http: HttpClient, protected utilService:UtilService) {}
+    constructor(protected http: HttpClient) {}
 
     //======== metodos ==========
 
