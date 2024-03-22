@@ -12,7 +12,7 @@ import { AddressesService } from '@services/addressesService';
 
 export class AddressesPage implements OnInit {
 
-  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependencies', 'opersystem', 'observ', 'type', 'other'];
+  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependencies', 'opersystem', 'observ', 'type', 'other', 'actions'];
   dataSource = new MatTableDataSource<Addresses>; //datasource
 
   //================= constructor =================
@@ -40,11 +40,7 @@ export class AddressesPage implements OnInit {
     
   }
 
-  cancel() {
-
-  }
-
-  save() {
+  editAddress() {
 
   }
   
