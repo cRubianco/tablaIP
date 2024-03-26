@@ -1,16 +1,24 @@
 <!-- menu -->
 <layout-header ></layout-header>
 
-<div class="profile" >
-	<div fxLayout="row wrap" fxLayoutAlign="center end">
-		<h1 color="#9C27B0">{{title}}</h1>
-		<!-- <div fxFlex="65" style="line-height: 90%;">
-				<p id="userName" style="font-size: 1rem;"> </p>
-		</div> -->
+<div >
+	<mat-toolbar color="primary" fxLayout="row" class="toolbar" >
+	
+		<span class="navbar-spacer"></span>
+		<span>{{getTitle()}}</span>
+		<span class="navbar-spacer"></span>
+		<mat-card-actions >
+			<button mat-mat-raised-button class="buttonadd">
+				<i class="material-icons">add</i>
+			</button>
+			<span class="navbar-spacer-button"></span>
+			<button mat-mat-raised-button class="buttonend">
+				<i class="material-icons">search</i>
+			</button>
+		</mat-card-actions>
 
-	</div>
+	</mat-toolbar>
 </div>
-
 
 <router-outlet></router-outlet>
 <layout-footer ></layout-footer>

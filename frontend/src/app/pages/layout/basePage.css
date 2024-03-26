@@ -7,6 +7,15 @@
   background:#9C27B0
 }
 
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-spacer-button {
+  padding-right: 20px;
+  flex: 1 1 auto;
+}
+
 .sidebar {
   width: 190px;
   color: rgb(251, 248, 248);
@@ -39,7 +48,7 @@
 .content {
   flex: 1;
   padding: 20px;
-  background: #E9EAEF;
+  background: #4053b3;
   margin: 0px;
 }
 

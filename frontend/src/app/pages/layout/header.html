@@ -1,12 +1,13 @@
 <header>
-  <mat-toolbar color="primary" fxLayout="row" class="toolbar" >
-    <button id="menu" fxLayoutAlign="start" type="button" mat-icon-button >
+  <mat-toolbar color="primary">
+    <button mat-icon-button id="menu" fxLayoutAlign="start" type="button" mat-icon-button >
         <mat-icon>menu</mat-icon>
-    </button>Tabla IP
-    <div>
-      <ng-container>
-          <mat-icon svgIcon="settings"></mat-icon>
-      </ng-container>
-    </div>
+    </button>
+    <span class="navbar-spacer"></span>
+    <span>{{getTitle()}}</span>
+    <span class="navbar-spacer"></span>
+    <button mat-icon-button>
+      <mat-icon>settings</mat-icon>
+    </button>
   </mat-toolbar>
 </header>

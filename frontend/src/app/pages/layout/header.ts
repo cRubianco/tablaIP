@@ -3,6 +3,7 @@ import { OnDestroyMixin } from "@w11k/ngx-componentdestroyed";
 import { MatSidenav } from '@angular/material/sidenav';
 
 import { Animations } from "@components/animations";
+import { Constants } from '@utils/constants';
 
 
 /**
@@ -15,6 +16,8 @@ import { Animations } from "@components/animations";
   animations: [Animations.shake]
 })
 export class Header extends OnDestroyMixin implements OnInit {
+
+  title: string = Constants.TITLE;
 
   /**
    * barra latera
@@ -33,6 +36,10 @@ export class Header extends OnDestroyMixin implements OnInit {
    * init
    */
   ngOnInit() {
+  }
+
+  getTitle() {
+    return this.title;
   }
 
 }

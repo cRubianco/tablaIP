@@ -9,14 +9,16 @@ import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dia
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from "@angular/material/card";
+import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import {MatToolbarModule} from "@angular/material/toolbar";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatPaginatorIntlES } from '@utils/matPaginatorIntlES';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 // import {MatPaginatorIntlES} from "@utils/matPaginatorIntlES";
 
@@ -28,12 +30,13 @@ const modules=[
   FlexLayoutModule, //flex
   FormsModule,
   //componentes angular material
-  MatButtonModule, MatCardModule, MatDialogModule, MatIconModule, MatProgressBarModule,
-  MatPaginatorModule, MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule, 
+  MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatPaginatorModule, MatProgressBarModule,
+  MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule, 
   
   //   MatListModule,  
   //   MatExpansionModule, MatSelectModule, MatProgressSpinnerModule,
-  //  MatFormFieldModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatAutocompleteModule,
+  //    MatCheckboxModule, MatAutocompleteModule,
   //   MatSortModule, MatDatepickerModule, MatMomentDateModule, MatRadioModule,
   // MatTabsModule, DragDropModule, MatSlideToggleModule, MatChipsModule, MatBadgeModule, 
   // MatMenuModule, MatNativeDateModule,

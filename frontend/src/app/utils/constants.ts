@@ -6,6 +6,9 @@ import * as moment from "moment";
   export const Constants = {
     VERSION:"1.1.1",//app version
 
+    TITLE: 'Tabla IP',
+    SUB_TITLE: 'Direcciones IP',
+    
     URL: {
       API_PATH:"/api/",
       TITLE: 'Tabla de IP',
