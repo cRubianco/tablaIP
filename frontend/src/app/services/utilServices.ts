@@ -88,7 +88,8 @@ export class UtilServices {
     // no estar en la doc oficial se quite en versiones posteriores de angular.
 
     // @ts-ignore
-    const currentNavigation = this.router.getCurrentNavigation() || this.router.lastSuccessfulNavigation;
+    // const currentNavigation = this.router.getCurrentNavigation() || this.router.lastSuccessfulNavigation;
+    const currentNavigation = this.router.getCurrentNavigation();
     return (currentNavigation == null) ? null : currentNavigation.extras.state;
   }
 

@@ -1,5 +1,6 @@
-import { AbstractControl, FormGroup } from "@angular/forms";
+import { AbstractControl, FormGroup, ValidationErrors } from "@angular/forms";
 import {Constants} from "./constants";
+import { environment } from "src/enviroments/enviroment";
 
 
 /**
@@ -48,6 +49,28 @@ import {Constants} from "./constants";
       return 0;
   }  
    
+  /**
+   * loguea errores de campos
+   * @param form
+   */
+  static logValidationsForm(form:FormGroup){
+    //common validators
+    if (!environment.production) {//solo para desa
+      Object.keys(form.controls).forEach(key => {
+        let tempKey = form.get(key)?.errors
+        console.log('Linea 61 -->  ', tempKey);
+        
+        // const controlErrors: ValidationErrors = form.get(key)?.errors;
+         const controlErrors = form.get(key)?.errors;
+        if (controlErrors != null) {
+          Object.keys(controlErrors).forEach(keyError => {
+            console.log('control: "' + key + '", error: "' + keyError + '", value: ', controlErrors[keyError]);
+          });
+        }
+      });
+    }
+  }
+  
  /**
    * elimina los puntos y convierte las comas en puntos
    * @param decimal

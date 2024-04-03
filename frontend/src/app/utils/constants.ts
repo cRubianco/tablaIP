@@ -15,12 +15,16 @@ import * as moment from "moment";
       DASHBOARD:"dashboard",
       LOGIN: "login",
       ADDRESSES:"addresses",
+      ADDRESS:"address",
       REDIRECT: "redirect",
     },
 
     LOCAL_STORE:{ //local store
       REMEMBER: "rememberMe",
       REDIRECT: "redirect", 
+    },
+    SESSION_STORE: {//session store
+      PAGES: "pages" //guarda los filtros de las paginas abm
     },
   
     DATES: {

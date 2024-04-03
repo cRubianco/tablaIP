@@ -5,6 +5,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UtilServices } from './services/utilServices';
 import { I18nService } from './services/i18nService';
 import { AddressesService } from '@services/addressesService';
+import { ParametersService } from '@services/parameterService';
+import { DirectAccessGuard } from '@utils/routing/directAccessGuard';
+import { CanDeactivateGuard } from '@utils/routing/canDeactivateGuard';
+import { DirectAccessAllow } from '@utils/routing/directAccessAllow';
 
 
 
@@ -22,10 +26,10 @@ import { AddressesService } from '@services/addressesService';
       // provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true
     // },
     // servicios utilidades
-    UtilServices, I18nService, AddressesService,
+    UtilServices, I18nService, AddressesService, ParametersService,
   
     // servicios navegacione
-    // DirectAccessGuard, CanDeactivateGuard, DirectAccessAllow,
+    DirectAccessGuard, CanDeactivateGuard, DirectAccessAllow,
   ]
 })
 export class ServicesModule { }

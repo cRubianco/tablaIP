@@ -5,6 +5,9 @@ import {MatIconRegistry} from "@angular/material/icon";
 import {OnDestroyMixin, untilComponentDestroyed,} from '@w11k/ngx-componentdestroyed';
 import { IconRegistry } from '@utils/iconRegistry';
 import { Constants } from '@utils/constants';
+import { MatDialog } from '@angular/material/dialog';
+import { AddressPage } from '@pages/address/addressPage';
+import { Addresses } from '@model/addresses';
 
 /**
  * Pagina base y layout
@@ -17,8 +20,10 @@ import { Constants } from '@utils/constants';
 export class BasePage extends OnDestroyMixin {
   title: string = Constants.SUB_TITLE;
   screenWidth: number;
+  address!: Addresses;
 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer ) {
+  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
+              private dialog: MatDialog) {
       super();
       // set screenWidth on page load
       this.screenWidth = window.innerWidth;
@@ -37,4 +42,14 @@ export class BasePage extends OnDestroyMixin {
     return this.screenWidth > 840;
   }
   
+  newAddress() {
+    const dialogRef = this.dialog.open(AddressPage);
+    
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('the dialog after closed ');
+      this.address = res;
+      
+    })
+  }
 }

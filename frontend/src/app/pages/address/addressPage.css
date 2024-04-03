@@ -1,0 +1,29 @@
+.profile {
+  color: #d2a5f7;
+  background: #4e2855;
+}
+
+.mat-mdc-card {
+  color: #e6ccf9;
+  /* color: darkorchid; */
+  background-color: #7c7c7c;
+  padding-right: 10px;
+}
+
+.mat-mdc-card-content:last-child {
+  padding-bottom: 16px;
+  padding-left: 32px;
+}
+
+.mat-mdc-card-title {
+  text-align: end;
+}
+
+.mat-mdc-card-subtitle {
+  padding-right: 80px;
+  text-align: end;
+}
+
+.form-field {
+  background-color: #dac8e8;
+}

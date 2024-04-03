@@ -4,9 +4,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroupDirective, FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import {MatPaginatorIntl, MatPaginatorModule} from "@angular/material/paginator";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from "@angular/material/card";
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,8 +21,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MatPaginatorIntlES } from '@utils/matPaginatorIntlES';
-
-// import {MatPaginatorIntlES} from "@utils/matPaginatorIntlES";
+import { MatSelectModule } from '@angular/material/select';
 
 /**
  * lista de modulos de angular material
@@ -30,13 +31,14 @@ const modules=[
   FlexLayoutModule, //flex
   FormsModule,
   //componentes angular material
+  MatAutocompleteModule,
   MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule,
   MatPaginatorModule, MatProgressBarModule,
-  MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule, 
+  MatSelectModule, MatSidenavModule, MatTableModule, MatToolbarModule, MatTooltipModule, 
   
   //   MatListModule,  
-  //   MatExpansionModule, MatSelectModule, MatProgressSpinnerModule,
-  //    MatCheckboxModule, MatAutocompleteModule,
+  //   MatExpansionModule,  MatProgressSpinnerModule,
+  //    MatCheckboxModule, 
   //   MatSortModule, MatDatepickerModule, MatMomentDateModule, MatRadioModule,
   // MatTabsModule, DragDropModule, MatSlideToggleModule, MatChipsModule, MatBadgeModule, 
   // MatMenuModule, MatNativeDateModule,
@@ -54,6 +56,7 @@ const modules=[
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-AR'}, //locale fechas
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     FormGroupDirective,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {minWidth: "50%", hasBackdrop:true}},    //popups
     {provide: MatPaginatorIntl, useClass: MatPaginatorIntlES}, //locale tablas

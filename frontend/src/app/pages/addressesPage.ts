@@ -63,14 +63,29 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
     
   }
 
-  editAddress(id: string) {
-    console.log("id IP address:  ", id);
-    
+  editAddress(address: Addresses, event: { stopPropagation: () => void; }) {
+    console.log("id IP address:  ", address._id);
+    event.stopPropagation();
+    this.addressesService.getAddress(address)
+      .subscribe({
+        next: res => {
+          if (res._id) {
+            this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
+          }
+    //   if (result.status == 200)
+    //     this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result.data });
+    // })
+        }
+      });
+        
   }
 
-  newAddress() {
-
-  }
+  /**
+   * agregar dirección IP
+   */
+  addAddress():void{
+    this.utilService.navigate(Constants.URL.ADDRESS);
+ }
 
   // filtrar(event: Event) {
   //   const filtro = (event.target as HTMLInputElement).value;
