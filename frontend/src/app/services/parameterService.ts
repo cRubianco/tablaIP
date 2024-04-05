@@ -21,22 +21,22 @@ export class ParametersService {
   /**
    * Tipos
    */
-  types:[string, string][]=[["Impresora","I"], ["Router","R"], ["Servidor","S"], ["Terminal","T"],
-                          ["Teléono","Tel"]];  
+  types:[string, string][]=[["Antena","A"], ["Impresora","I"], ["Router","R"], ["Servidor","S"], ["Switch","Sw"], ["Terminal","T"],
+                          ["Teléfono","Tel"]];  
 
   /**
    * Groups
    */
   groups:[string, string][]=[ ["Acción Social","Social"], ["Asesoría Legal","AsLegal"], ["Contaduria","Conta"], ["Corralon","Corra"], 
                               ["Informática","Infor"], ["Obras Públicas","Obras"], ["Rentas","Rentas"], ["Recursos Humanos","Perso"],
-                              ["Servicio Local","Social"],["Tesorería","Teso"], ];
+                              ["Servicio Local","Social"], ["Tesorería","Teso"], ];
 
   /**
    * provincias
    */
-  provinces: string[]=["CAP. FED.", "BS. AS.", "CATAMARCA", "CORDOBA", "CORRIENTES","CHACO","CHUBUT", "ENTRE RIOS", "FORMOSA",
+  provinces: string[]=["CAP. FED.", "BS. AS.", "CATAMARCA", "CÓRDOBA", "CORRIENTES","CHACO","CHUBUT", "ENTRE RIOS", "FORMOSA",
   "JUJUY","LA PAMPA", "LA RIOJA", "MENDOZA", "MISIONES", "NEUQUEN","RIO NEGRO", "SALTA", "SAN JUAN", "SAN LUIS",
-  "SANTA CRUZ","SANTA FE", "SGO.ESTERO", "T.DE FUEGO.", "TUCUMAN"];
+  "SANTA CRUZ","SANTA FE", "SGO.ESTERO", "T.DE FUEGO.", "TÚCUMAN"];
 
   //===================== constructor ================================
 

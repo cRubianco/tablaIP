@@ -19,7 +19,7 @@ import { Constants } from "@utils/constants";
 
  
   // readonly pageName="Address";
-  // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependencies', 'opersystem', 'observ', 'type', 'other'];
+  // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
   // readonly dataSource:MatTableDataSource<Addresses> = new MatTableDataSource<Addresses>(); //dataSource
 
 
@@ -44,9 +44,8 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   // filteredClients: Client[]=[]; //clientes filtrados por autocomplete
   // clientsCtrl:FormArray=this.fb.array( []); //lista de clientes seleccionados
   
-  inputCtrl:FormControl=new FormControl(); //input del autocomplete
+  // inputCtrl:FormControl=new FormControl(); //input del autocomplete
   @ViewChild('input') input: ElementRef<HTMLInputElement>; //html input
-
 
 
   //================= constructor =================
@@ -60,21 +59,15 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     super();
     //chequeo si estoy editando o no
     const state = this.utilsService.getState();
-    console.log('linea 63 --> onInit  ',state);
-
-    if (state) {//view or edit
+    if (state) {  //view or edit
       this.addr = state.data;
       this.edit = this.utilsService.getState().edit;
-      console.log('Linea 68 --> '+this.edit);
-      
       this.new=false;
     } else { //new
       this.new=true;
       this.edit=true;
       this.addr={};
     }
-    console.log('onInit  ',this.edit);
-    
   }
 
   /**
@@ -83,27 +76,22 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   ngOnInit(): void {
     //create reactive form
     this.form = this.fb.group({
-      nro: [{value: null, disabled: !this.new || !this.edit}, [Validators.required, CustomValidators.alphanumeric]],
-      address: [{value: null, disabled: !this.new || !this.edit}, [Validators.required, CustomValidators.alphanumeric]],
+      nro: [{value: null, disabled: !this.new }, [Validators.required]],
+      address: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.alphanumeric]],
       group: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       user: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      dependencies: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
+      dependency: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       opersystem: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       observ: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       type: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
       other: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
-      // clients: this.clientsCtrl,
     });
-    console.log('92 ---->  ' + this.form);
-    console.log('93 ---->  ' + this.addr._id);
     //set initials values
     if (this.addr != null) {
-      Object.keys(this.addr).forEach(address => {
-        if (this.form.controls[address]) {
-          console.log('95---->  ' + address);
-          
-          // this.form.controls[address].patchValue(this.address[address], {onlySelf: true});
+      Object.keys(this.addr).forEach(data => {
+        if (this.form.controls[data]) {
+          this.form.controls[data].patchValue(this.addr[data as keyof Addresses], {onlySelf: true});
         }
       });
       //busqueda de usuarios
@@ -126,42 +114,49 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    */
   addressSelected(event:MatAutocompleteSelectedEvent):void{
     let address=event.option.value;
+    console.log('addPage 130 --> ',address);
+    
     this.form.controls["nro"].patchValue( address.nro, {onlySelf: true});
     this.form.controls["address"].patchValue( address.address, {onlySelf: true});
     this.form.controls["group"].patchValue( address.group, {onlySelf: true});
     this.form.controls["user"].patchValue( address.user, {onlySelf: true});
     this.form.controls["pcname"].patchValue( address.pcname, {onlySelf: true});
-    this.form.controls["dependencies"].patchValue( address.dependencies, {onlySelf: true});
+    this.form.controls["dependency"].patchValue( address.dependency, {onlySelf: true});
     this.form.controls["opersystem"].patchValue( address.opersystem, {onlySelf: true});
     this.form.controls["observ"].patchValue( address.observ, {onlySelf: true});
     this.form.controls["type"].patchValue( address.type, {onlySelf: true});
     this.form.controls["other"].patchValue( address.other, {onlySelf: true});
   }
-// ['nro', 'address', 'group', 'user', 'pcname', 'dependencies', 'opersystem', 'observ', 'type', 'other'];
+// ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
 
 
   /**
    * displayAddress
    * @param address
    */
-  displayAddress(address?: { address: any; })  {
-    if (address)
+  displayAddress(address?: Addresses): string  {
+    if (address) {
+    console.log('--> ',address);
+    
       return (typeof address === "string") ? address : address.address;
-    else
-      return null;
+    } else {
+      return '';
+    }
   }
 
   /**
    * evento al cerrar autocomplete
    */
   closeAddress(){
+    console.log('closeAddress ', this.addr);
+    
     if (typeof this.form.controls["address"].value === "string") {
       this.form.controls["nro"].patchValue(null);
       this.form.controls["address"].patchValue(null);
       this.form.controls["group"].patchValue( null, {onlySelf: true});
       this.form.controls["user"].patchValue( null, {onlySelf: true});
       this.form.controls["pcname"].patchValue( null, {onlySelf: true});
-      this.form.controls["dependencies"].patchValue( null, {onlySelf: true});
+      this.form.controls["dependency"].patchValue( null, {onlySelf: true});
       this.form.controls["opersystem"].patchValue( null, {onlySelf: true});
       this.form.controls["observ"].patchValue( null, {onlySelf: true});
       this.form.controls["type"].patchValue( null, {onlySelf: true});

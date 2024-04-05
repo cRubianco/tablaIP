@@ -17,7 +17,7 @@ import { Constants } from '@utils/constants';
 
 export class AddressesPage extends BaseSectionPage implements OnInit {
 
-  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependencies', 'opersystem', 'observ', 'type', 'other', 'edit'];
+  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other', 'edit'];
   dataSource = new MatTableDataSource<Addresses>; //datasource
   title: string = "Direcciones IP"
 
@@ -64,20 +64,25 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   }
 
   editAddress(address: Addresses, event: { stopPropagation: () => void; }) {
-    console.log("id IP address:  ", address._id);
     event.stopPropagation();
     this.addressesService.getAddress(address)
-      .subscribe({
-        next: res => {
-          if (res._id) {
-            this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
-          }
+    .subscribe(
+      result => {
+        this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: result })
+      }
+    );
+      // {
+      // next: res => {
+      //   if (res._id) {
+      //       console.log("id IP address:  ", address._id);
+      //       this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
+      //     }
+      //   }
+    // }
     //   if (result.status == 200)
     //     this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result.data });
     // })
-        }
-      });
-        
+      
   }
 
   /**

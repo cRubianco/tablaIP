@@ -4,22 +4,22 @@
       <mat-card>
         <mat-card-title>{{addr._id ? "Editando" : "Agregando"}} Dirección IP</mat-card-title>
         <mat-card-subtitle>Ingresa los datos</mat-card-subtitle>
-        <div *ngIf="!edit">
+        <!-- <div *ngIf="!new" >
           <mat-form-field fxFlex="40" fxFlex.xs="100">
             <mat-icon matSuffix>search</mat-icon>
-            <label class="edit">
+            <label >
               <input matInput type="search" formControlName="address" (keyup)="searchKeyUp.next($event)" (blur)="checkAddress()"
               required placeholder="Buscar dirección IP" [matAutocomplete]="auto" maxlength="60">
             </label>
             <mat-hint align="start">Ingrese la dirección IP</mat-hint>
             <mat-error>{{i18nService.getValidationMessage(this.form.controls["address"])}}</mat-error>
-            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (closed)="closeAddress()" (optionSelected)="addressSelected($event)" [displayWith]="displayAddress">
+            <mat-autocomplete #auto="matAutocomplete" (closed)="closeAddress()" (optionSelected)="addressSelected($event)" [displayWith]="displayAddress">
               <mat-option *ngFor="let address of filteredAddress | async" [value]="address">
                 {{address.address}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
-        </div>  
+        </div>   -->
       </mat-card>
   </div>  
     <mat-card>
@@ -31,12 +31,12 @@
       
         <form-row>
           <form-select-field fxFlex="40" fxFlex.xs="100" name="Grupo" [form]="form" controlName="group" [options]="parametersService.groups"></form-select-field>
-          <form-field fxFlex="40" fxFlex.xs="100" name="User" [form]="form" controlName="address"></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="User" [form]="form" controlName="user"></form-field>
         </form-row>
       
         <form-row>
           <form-field fxFlex="40" fxFlex.xs="100" name="Nom PC" [form]="form" controlName="pcname" ></form-field>
-          <form-field fxFlex="40" fxFlex.xs="100" name="Dependencia" [form]="form" controlName="dependencies"></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Dependencia" [form]="form" controlName="dependency"></form-field>
         </form-row>
       
         <form-row>
