@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { debounceTime, distinctUntilChanged, mergeMap, Observable, Subject } from "rxjs";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Observable, Subject } from "rxjs";
 
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
@@ -14,14 +14,6 @@ import { Utils } from "@utils/utils";
 import { CustomValidators } from "@utils/customValidators";
 import { CanDeactivateAbstract } from "@utils/routing/canDeactivateAbstract";
 import { Constants } from "@utils/constants";
-import { untilComponentDestroyed } from "@w11k/ngx-componentdestroyed";
-
-
- 
-  // readonly pageName="Address";
-  // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
-  // readonly dataSource:MatTableDataSource<Address> = new MatTableDataSource<Address>(); //dataSource
-
 
 /**
  * Pagina detalle de la dirección IP
@@ -32,6 +24,11 @@ import { untilComponentDestroyed } from "@w11k/ngx-componentdestroyed";
   styleUrls: ['./addressPage.css']
 })
 export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFormInterface {
+
+  // readonly pageName="Address";
+  // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
+  // readonly dataSource:MatTableDataSource<Address> = new MatTableDataSource<Address>(); //dataSource
+
   readonly Utils=Utils;
   form: FormGroup; //formulario
   readonly address: Address[]; //dto
@@ -42,7 +39,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   filteredAddress: Observable<Address[]>;
   public searchKeyUp = new Subject<KeyboardEvent>();
   
-  // inputCtrl:FormControl=new FormControl(); //input del autocomplete
+  inputCtrl:FormControl=new FormControl(); //input del autocomplete
   @ViewChild('input') input: ElementRef<HTMLInputElement>; //html input
 
   //================= constructor =================
@@ -64,6 +61,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     } else { //new
       this.new=true;
       this.edit=true;
+      this.data={};
     }
   }
 
@@ -73,35 +71,25 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   ngOnInit(): void {
     //create reactive form
     this.form = this.fb.group({
-      nro: [{value: null, disabled: !this.new }, [Validators.required]],
+      nro: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.numeric]],
       address: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.alphanumeric]],
       group: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       user: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       dependency: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      opersystem: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      observ: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
+      opersystem: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alpha]],
+      observ: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alpha]],
       type: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
-      other: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
+      other: [{value: null, disabled: !this.edit}, [CustomValidators.alpha]],
     });
-     //set initials values
-     if (this.data != null) {
+    //set initials values
+    if (this.data != null) {
       Object.keys(this.data).forEach(name => {
         if (this.form.controls[name]) {
           this.form.controls[name].patchValue(this.data[name], {onlySelf: true});
         }
       });
-      //busqueda de usuarios
-      // this.filteredAddress = this.searchKeyUp.pipe(
-      //   untilComponentDestroyed(this),
-      //   debounceTime(300),
-      //   distinctUntilChanged(),
-      //   mergeMap(() => {
-      //     const control=this.form.controls["data"].value;
-      //     return this.filterAddress((typeof control === "string"||control==null)?control:control.data);
-      //   }));
-}
-
+    }
   }
 
   //==================== Metodos =====================
@@ -112,9 +100,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       return "";
   }
 
-  addressSelect() {
-
-  }
   /**
    * usuario seleccionaro, recupero datos y los paso al formulario
    * @param event
@@ -122,7 +107,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   addressSelected(event:MatAutocompleteSelectedEvent):void{
     let address=event.option.value;
     console.log('addPage 130 --> ',address);
-
+    // ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
     this.form.controls["nro"].patchValue( address.nro, {onlySelf: true});
     this.form.controls["address"].patchValue( address.address, {onlySelf: true});
     this.form.controls["group"].patchValue( address.group, {onlySelf: true});
@@ -134,8 +119,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     this.form.controls["type"].patchValue( address.type, {onlySelf: true});
     this.form.controls["other"].patchValue( address.other, {onlySelf: true});
   }
-// ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
-
 
   /**
    * displayAddress
@@ -143,8 +126,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    */
   displayAddress(address?: Address): string  {
     if (address) {
-    console.log('--> ',address);
-    
       return (typeof address === "string") ? address : address.address;
     } else {
       return '';
@@ -155,8 +136,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    * evento al cerrar autocomplete
    */
   closeAddress(){
-    // console.log('closeAddress ', this.addr);
-    
+    // console.log('closeAddress ', this.addr);    
     if (typeof this.form.controls["address"].value === "string") {
       this.form.controls["nro"].patchValue(null);
       this.form.controls["address"].patchValue(null);
@@ -191,16 +171,29 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
         return;
       }
 
-      //pasos los datosl al dto
-      Object.keys(this.form.value).forEach(address => {
-        console.log('180  ----->  '+address);
-        console.log('180  ----->  '+this.form.value[address]);
+      //pasos los datos al dto
+      Object.keys(this.form.value).forEach(addr => {
+        console.log('180  addr ----->  '+addr);
+        console.log('for.val.addr -->  '+this.form.value[addr]);
+        console.log('180 address -->  '+this.data);
         
-        // this.address[address]=this.form.value[address];
+        this.data[addr]=this.form.value[addr];
       });
-
+      // if (this.form.value["address"]) //si esta editando uno que existe, como esta deshabilitado da null
+      //save
+      // this.addressService.addAddress(this.address).then((response)=>{
+      //   if (response.status==200) {
+      //     resolve(true);
+      //     this.utilService.navigate(Constants.URL.ADDRESSES);
+      //   } else {
+      //     resolve(false);
+      //   }
+      // });
     });
   }
+      
+
+
 
   /**
    * cancel

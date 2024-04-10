@@ -6,7 +6,7 @@
 .mat-mdc-card {
   color: #e6ccf9;
   /* color: darkorchid; */
-  background-color: #7c7c7c;
+  background-color: #363536;
   padding-right: 10px;
 }
 
@@ -16,6 +16,7 @@
 }
 
 .mat-mdc-card-title {
+  color: #FFC107;
   text-align: end;
 }
 
