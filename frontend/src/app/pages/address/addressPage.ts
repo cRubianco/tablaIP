@@ -170,18 +170,31 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
         resolve(false);
         return;
       }
-
       //pasos los datos al dto
       Object.keys(this.form.value).forEach(addr => {
-        console.log('180  addr ----->  '+addr);
-        console.log('for.val.addr -->  '+this.form.value[addr]);
-        console.log('180 address -->  '+this.data);
-        
         this.data[addr]=this.form.value[addr];
       });
-      // if (this.form.value["address"]) //si esta editando uno que existe, como esta deshabilitado da null
-      //save
-      // this.addressService.addAddress(this.address).then((response)=>{
+      
+      if (this.data._id) {
+        // modify
+        this.addressService.updateAddress(this.data)
+          .subscribe(
+            next => { console.log('updtAdd ', next) },
+            err => { console.log('updtAdd  ', err)  }
+          )
+      } else {
+        // new
+        this.addressService.addAddress(this.data)
+        .subscribe(
+          next => { console.log('addAddress', next) },
+          err => { console.log('Err addAddress', err) }
+        )
+      }
+      console.log('180 data -->  ', this.data);
+    })
+  }   
+      
+      // then((response)=>{
       //   if (response.status==200) {
       //     resolve(true);
       //     this.utilService.navigate(Constants.URL.ADDRESSES);
@@ -189,12 +202,9 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       //     resolve(false);
       //   }
       // });
-    });
-  }
-      
-
-
-
+    // });
+  
+  
   /**
    * cancel
    */
