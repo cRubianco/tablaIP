@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Event, Router} from "@angular/router";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { Observable, tap } from 'rxjs';
 
 import {Constants} from "@utils/constants";
 import {LinkAction} from "@model/enum/linkAction";
@@ -89,7 +89,7 @@ export class UtilServices {
 
     // @ts-ignore
     // const currentNavigation = this.router.getCurrentNavigation() || this.router.lastSuccessfulNavigation;
-    const currentNavigation = this.router.getCurrentNavigation();
+    const currentNavigation = this.router.getCurrentNavigation()
     return (currentNavigation == null) ? null : currentNavigation.extras.state;
   }
 

@@ -1,6 +1,6 @@
 // { nro, address, grupo, user, pcname, dependency, opersystem, observ, type, other } 
-export interface Addresses {
-  nro: number;
+export interface Address {
+  nro: string;
   address: string;
   grupo: string;
   user: string;

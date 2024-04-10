@@ -3,8 +3,8 @@ import { FormBuilder } from '@angular/forms';
 
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Addresses } from '@model/addresses';
-import { AddressesService } from '@services/addressesService';
+import { Address } from '@model/address';
+import { AddressService } from '@services/addressesService';
 import { BaseSectionPage } from '@components/pages/BaseSectionPage';
 import { UtilServices } from '@services/utilServices';
 import { Constants } from '@utils/constants';
@@ -18,7 +18,7 @@ import { Constants } from '@utils/constants';
 export class AddressesPage extends BaseSectionPage implements OnInit {
 
   displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other', 'edit'];
-  dataSource = new MatTableDataSource<Addresses>; //datasource
+  dataSource = new MatTableDataSource<Address>; //datasource
   title: string = "Direcciones IP"
 
     /**
@@ -30,9 +30,9 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   /**
    * constructor
    */
-  constructor(fb: FormBuilder, private addressesService: AddressesService, protected utilsService: UtilServices) {
-    super(fb, utilsService);
-    const state = this.utilsService.getState();
+  constructor(fb: FormBuilder, private addressesService: AddressService, utilService: UtilServices) {
+    super(fb, utilService);
+    const state = this.utilService.getState();
     this.duplicate=state && state.duplicate;
   }
 
@@ -51,7 +51,7 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   }; 
 
   //==================== Metodos =====================
-  clickedRows = new Set<Addresses[]>();
+  clickedRows = new Set<Address[]>();
 
   getAddresses() {
     this.addressesService.getAddresses().subscribe({
@@ -63,19 +63,19 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
     
   }
 
-  editAddress(address: Addresses, event: { stopPropagation: () => void; }) {
+  editAddress(id: string, event: { stopPropagation: () => void; }) {
     event.stopPropagation();
-    this.addressesService.getAddress(address)
-    .subscribe(
-      result => {
-        this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: result })
+    this.addressesService.getAddress(id)
+    .subscribe({
+      next: result => {
+        this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result })
       }
-    );
+    });
       // {
       // next: res => {
       //   if (res._id) {
       //       console.log("id IP address:  ", address._id);
-      //       this.utilsService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
+      //       this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
       //     }
       //   }
     // }
@@ -101,7 +101,7 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   * cancel
   */
   cancel(){
-    this.utilsService.navigate(Constants.URL.ADDRESSES);
+    this.utilService.navigate(Constants.URL.ADDRESSES);
   }
   
 }

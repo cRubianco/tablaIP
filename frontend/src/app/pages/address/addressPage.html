@@ -2,8 +2,8 @@
   <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
     <div>
       <mat-card>
-        <mat-card-title>{{addr._id ? "Editando" : "Agregando"}} Dirección IP</mat-card-title>
-        <mat-card-subtitle>Ingresa los datos</mat-card-subtitle>
+        <mat-card-title>{{data._id ? "Modificando" : "Agregando"}} Dirección IP</mat-card-title>
+        <!-- <mat-card-subtitle>Ingresa los datos</mat-card-subtitle> -->
         <!-- <div *ngIf="!new" >
           <mat-form-field fxFlex="40" fxFlex.xs="100">
             <mat-icon matSuffix>search</mat-icon>

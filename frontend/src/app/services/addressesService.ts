@@ -3,11 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 
 import { environment } from "src/enviroments/enviroment";
-import { Addresses } from "@model/addresses";
+import { Address } from "@model/address";
 import { Constants } from "@utils/constants";
 
 @Injectable()
-export class AddressesService  {
+export class AddressService  {
 
     /**
    * url servicio empleados
@@ -19,8 +19,8 @@ export class AddressesService  {
 
     //======== metodos ==========
 
-    getAddresses(): Observable<Addresses[]> {
-      return this.http.get<Addresses[]>(this.baseUrl)
+    getAddresses(): Observable<Address[]> {
+      return this.http.get<Address[]>(this.baseUrl)
         .pipe(tap((data) => console.log("all addresses",data)+ JSON.stringify(data)));
         
     }
@@ -29,10 +29,17 @@ export class AddressesService  {
    * recupera item
    * @param item
    */
-  getAddress(item: Addresses): Observable<Addresses> {
-    return this.http.get<Addresses>(this.baseUrl+item._id)
-      .pipe(tap((data) => console.log("one address",data)+ JSON.stringify(data)));
-    
+  getAddress(id: string): Observable<Address> {
+    return this.http.get<Address>(this.baseUrl+id)
+      .pipe(tap((data) => console.log('oneAddres',data)+JSON.stringify(data)));
+  }
+
+  addAddress(item: Address) {
+    return this.http.post(this.baseUrl+item, item);
+  }
+
+  updateAddress(item: Address) {
+    return this.http.put(this.baseUrl+item, item);
   }
 
 }

@@ -1,13 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { debounceTime, distinctUntilChanged, EMPTY, mergeMap, Observable, Subject } from "rxjs";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { debounceTime, distinctUntilChanged, mergeMap, Observable, Subject } from "rxjs";
 
 import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 
-import { untilComponentDestroyed } from "@w11k/ngx-componentdestroyed";
-import { Addresses } from "@model/addresses";
+import { Address } from "@model/address";
 import { SaveFormInterface } from "@components/pages/saveFormInterface";
-import { AddressesService } from "@services/addressesService";
+import { AddressService } from "@services/addressesService";
 import { I18nService } from "@services/i18nService";
 import { ParametersService } from "@services/parameterService";
 import { UtilServices } from "@services/utilServices";
@@ -15,12 +14,13 @@ import { Utils } from "@utils/utils";
 import { CustomValidators } from "@utils/customValidators";
 import { CanDeactivateAbstract } from "@utils/routing/canDeactivateAbstract";
 import { Constants } from "@utils/constants";
+import { untilComponentDestroyed } from "@w11k/ngx-componentdestroyed";
 
 
  
   // readonly pageName="Address";
   // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
-  // readonly dataSource:MatTableDataSource<Addresses> = new MatTableDataSource<Addresses>(); //dataSource
+  // readonly dataSource:MatTableDataSource<Address> = new MatTableDataSource<Address>(); //dataSource
 
 
 /**
@@ -34,19 +34,16 @@ import { Constants } from "@utils/constants";
 export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFormInterface {
   readonly Utils=Utils;
   form: FormGroup; //formulario
-  readonly addr: Partial<Addresses>; //dto
+  readonly address: Address[]; //dto
   edit:boolean; //modo edicion?
   readonly new:boolean; //flag si es nuevo
-  filteredAddress: Observable<Addresses[]>;
-  public searchKeyUp = new Subject<KeyboardEvent>();
+  data: any;  // dato para inicilizar el formulario
   
-  //campos para busqueda cliente
-  // filteredClients: Client[]=[]; //clientes filtrados por autocomplete
-  // clientsCtrl:FormArray=this.fb.array( []); //lista de clientes seleccionados
+  filteredAddress: Observable<Address[]>;
+  public searchKeyUp = new Subject<KeyboardEvent>();
   
   // inputCtrl:FormControl=new FormControl(); //input del autocomplete
   @ViewChild('input') input: ElementRef<HTMLInputElement>; //html input
-
 
   //================= constructor =================
 
@@ -54,19 +51,19 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    * constructor
    */
   constructor(private fb:FormBuilder, public parametersService:ParametersService,
-              public i18nService:I18nService, private utilsService: UtilServices, private addressService: AddressesService,
+              public i18nService:I18nService, private utilService: UtilServices, private addressService: AddressService,
               ) {
     super();
+    
     //chequeo si estoy editando o no
-    const state = this.utilsService.getState();
+    const state = this.utilService.getState();
     if (state) {  //view or edit
-      this.addr = state.data;
-      this.edit = this.utilsService.getState().edit;
+      this.data = state.data.data;
+      this.edit = this.utilService.getState().edit;
       this.new=false;
     } else { //new
       this.new=true;
       this.edit=true;
-      this.addr={};
     }
   }
 
@@ -87,27 +84,37 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       type: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
       other: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
     });
-    //set initials values
-    if (this.addr != null) {
-      Object.keys(this.addr).forEach(data => {
-        if (this.form.controls[data]) {
-          this.form.controls[data].patchValue(this.addr[data as keyof Addresses], {onlySelf: true});
+     //set initials values
+     if (this.data != null) {
+      Object.keys(this.data).forEach(name => {
+        if (this.form.controls[name]) {
+          this.form.controls[name].patchValue(this.data[name], {onlySelf: true});
         }
       });
       //busqueda de usuarios
       // this.filteredAddress = this.searchKeyUp.pipe(
-        // untilComponentDestroyed(this),
-        // debounceTime(300),
-        // distinctUntilChanged(),
-        // mergeMap(() => {
-        //   const control=this.form.controls["address"].value;
-        //   return this.filteredAddress((typeof control === "string" || control==null) ? control : control.address);
-        // }));
-    }
+      //   untilComponentDestroyed(this),
+      //   debounceTime(300),
+      //   distinctUntilChanged(),
+      //   mergeMap(() => {
+      //     const control=this.form.controls["data"].value;
+      //     return this.filterAddress((typeof control === "string"||control==null)?control:control.data);
+      //   }));
+}
+
   }
 
   //==================== Metodos =====================
+  getTitle():string{
+    if (this.edit)
+      return this.data.id ? "Editando" : "Nueva";
+    else
+      return "";
+  }
 
+  addressSelect() {
+
+  }
   /**
    * usuario seleccionaro, recupero datos y los paso al formulario
    * @param event
@@ -115,7 +122,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   addressSelected(event:MatAutocompleteSelectedEvent):void{
     let address=event.option.value;
     console.log('addPage 130 --> ',address);
-    
+
     this.form.controls["nro"].patchValue( address.nro, {onlySelf: true});
     this.form.controls["address"].patchValue( address.address, {onlySelf: true});
     this.form.controls["group"].patchValue( address.group, {onlySelf: true});
@@ -134,7 +141,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    * displayAddress
    * @param address
    */
-  displayAddress(address?: Addresses): string  {
+  displayAddress(address?: Address): string  {
     if (address) {
     console.log('--> ',address);
     
@@ -148,7 +155,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    * evento al cerrar autocomplete
    */
   closeAddress(){
-    console.log('closeAddress ', this.addr);
+    // console.log('closeAddress ', this.addr);
     
     if (typeof this.form.controls["address"].value === "string") {
       this.form.controls["nro"].patchValue(null);
@@ -179,7 +186,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     return new Promise<boolean>(resolve => {
       if (this.form.invalid) {
         Utils.logValidationsForm(this.form);
-        this.utilsService.showSnack("Para realizar esta operación, debe completar correctamente todos los campos.");
+        this.utilService.showSnack("Para realizar esta operación, debe completar correctamente todos los campos.");
         resolve(false);
         return;
       }
@@ -192,16 +199,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
         // this.address[address]=this.form.value[address];
       });
 
-      if (this.form.value["address"]) //si esta editando uno que existe, como esta deshabilitado da null
-        this.addr.address=this.form.value["address"].address;//sobreescribo el nick, porque en el form puede ser un objeto
-      //save
-      // this.addressService.save(this.address).then((response)=>{
-      //   if (response.status==200) {
-      //     resolve(true);
-      //     this.utilsService.navigate(Constants.URL.ADDRESS);
-      //   } else
-      //     resolve(false);
-      // });
     });
   }
 
@@ -209,7 +206,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    * cancel
    */
   cancel(){
-    this.utilsService.navigate(Constants.URL.ADDRESSES);
+    this.utilService.navigate(Constants.URL.ADDRESSES);
   }
 
   onBlur(){

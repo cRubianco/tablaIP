@@ -7,7 +7,7 @@ import { IconRegistry } from '@utils/iconRegistry';
 import { Constants } from '@utils/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { AddressPage } from '@pages/address/addressPage';
-import { Addresses } from '@model/addresses';
+import { Address } from '@model/address';
 
 /**
  * Pagina base y layout
@@ -20,7 +20,7 @@ import { Addresses } from '@model/addresses';
 export class BasePage extends OnDestroyMixin {
   title: string = Constants.SUB_TITLE;
   screenWidth: number;
-  address!: Addresses;
+  address!: Address;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
               private dialog: MatDialog) {
