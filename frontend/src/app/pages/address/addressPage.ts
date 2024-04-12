@@ -101,7 +101,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   }
 
   /**
-   * usuario seleccionaro, recupero datos y los paso al formulario
+   * dirección seleccionada, recupero datos y los paso al formulario
    * @param event
    */
   addressSelected(event:MatAutocompleteSelectedEvent):void{
