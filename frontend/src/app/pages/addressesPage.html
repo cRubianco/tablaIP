@@ -61,12 +61,20 @@
         <td mat-cell *matCellDef="let address">{{address.other}}</td>
       </ng-container>
     
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
         <td mat-cell *matCellDef="let address">
-          <button mat-raised-button (click)="editAddress(address._id, $event)" >Modificar</button>
+          <button mat-raised-button (click)="editAddress(address._id, $event)">
+            Modificar
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-raised-button (click)="deleteAddress(address._id, $event)" >
+            Eliminar
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </ng-container>
+      
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

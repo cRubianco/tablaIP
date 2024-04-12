@@ -187,11 +187,16 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
         this.addressService.addAddress(this.data)
         .subscribe(
           next => { console.log('addAddress', next) },
-          err => { console.log('Err addAddress', err) }
+          err => { console.log('Err addAddress', err) },
+          
         )
+        console.log('response -> ', resolve );
+        console.log('response -> ', resolve(this.data) );
+        console.log('196 data -->  ', this);
         
       }
-      console.log('180 data -->  ', this.data);
+      console.log('196 data -->  ', this);
+      
     })
   }   
       

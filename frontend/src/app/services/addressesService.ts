@@ -42,4 +42,9 @@ export class AddressService  {
     return this.http.put(this.baseUrl, item);
   }
 
+  deleteAddress(item: string) {
+    return this.http.delete(this.baseUrl+item)
+    .subscribe();
+  }
+
 }

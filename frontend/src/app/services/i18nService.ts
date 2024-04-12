@@ -17,9 +17,9 @@ export class  I18nService {
     let error = control ? control.errors : null;
     if (error==null) return "";
     if (error["required"]) return "Este dato es requerido";
-    // if (error.minlength) return "Ingrese al menos "+error.minlength.requiredLength+" caracteres";
     if (error["pattern"]) return "Ingrese un valor válido. "+error["pattern"].msg;
-    // if (error.email) return "Ingrese un mail válido.";
+    if (error["ipAddress"]) return "Ingrese una direción Ip valida.";
+    // if (error.minlength) return "Ingrese al menos "+error.minlength.requiredLength+" caracteres";
     // if (error.max) return "Ingrese un valor menor o igual a "+error.max.max;
     // if (error.msg) return this.getMessage(error.msg);
     console.error("Tipo de error no definido: "+error["msg"]);

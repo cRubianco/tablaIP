@@ -17,7 +17,7 @@ import { Constants } from '@utils/constants';
 
 export class AddressesPage extends BaseSectionPage implements OnInit {
 
-  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other', 'edit'];
+  displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other', 'acciones'];
   dataSource = new MatTableDataSource<Address>; //datasource
   title: string = "Direcciones IP"
 
@@ -82,7 +82,12 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
     //   if (result.status == 200)
     //     this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result.data });
     // })
-      
+  }
+
+  deleteAddress(id: string, $event: MouseEvent) {
+    console.log('deleteAddress', id);
+    this.addressesService.deleteAddress(id)
+    
   }
 
   /**
