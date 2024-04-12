@@ -8,12 +8,15 @@
     <mat-card>
       <mat-card-content>
         <form-row>
-          <form-field fxFlex="40" fxFlex.xs="100" name="nro" [form]="form" controlName="nro"></form-field>
-          <form-field fxFlex="40" fxFlex.xs="100" name="Address" [form]="form" controlName="address" ></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="nro" [form]="form" controlName="nro"
+              [description]="i18nService.getMessage('VALIDATOR_NUMERIC')"></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Address" [form]="form" controlName="address" 
+              [description]="i18nService.getMessage('VALIDATOR_ADDRESS_IP')"></form-field>
         </form-row>
       
         <form-row>
-          <form-select-field fxFlex="40" fxFlex.xs="100" name="Grupo" [form]="form" controlName="group" [options]="parametersService.groups"></form-select-field>
+          <form-select-field fxFlex="40" fxFlex.xs="100" name="Grupo" [form]="form" controlName="group" 
+              [options]="parametersService.groups"></form-select-field>
           <form-field fxFlex="40" fxFlex.xs="100" name="User" [form]="form" controlName="user"></form-field>
         </form-row>
       
@@ -28,7 +31,8 @@
         </form-row>      
 
         <form-row>
-          <form-select-field fxFlex="40" fxFlex.xs="100" name="Tipo" [form]="form" controlName="type" [options]="parametersService.types" ></form-select-field>
+          <form-select-field fxFlex="40" fxFlex.xs="100" name="Tipo" [form]="form" controlName="type" 
+              [options]="parametersService.types" ></form-select-field>
           <form-field fxFlex="40" fxFlex.xs="100" name="Otros" [form]="form" controlName="other"></form-field>
         </form-row>
 

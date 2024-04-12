@@ -4,7 +4,7 @@
 }
 
 .mat-mdc-card {
-  color: #e6ccf9;
+  color: #13d32d;
   /* color: darkorchid; */
   background-color: #363536;
   padding-right: 10px;
@@ -26,5 +26,7 @@
 }
 
 .form-field {
+  lighting-color : #FFC107;
+  color : #23a854;
   background-color: #dac8e8;
 }

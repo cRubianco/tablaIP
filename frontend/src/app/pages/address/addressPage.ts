@@ -72,7 +72,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     //create reactive form
     this.form = this.fb.group({
       nro: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.numeric]],
-      address: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.alphanumeric]],
+      address: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.ipAddress]],
       group: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       user: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
@@ -189,6 +189,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
           next => { console.log('addAddress', next) },
           err => { console.log('Err addAddress', err) }
         )
+        
       }
       console.log('180 data -->  ', this.data);
     })

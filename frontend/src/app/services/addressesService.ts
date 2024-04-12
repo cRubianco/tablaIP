@@ -35,11 +35,11 @@ export class AddressService  {
   }
 
   addAddress(item: Address) {
-    return this.http.post(this.baseUrl+item, item);
+    return this.http.post(this.baseUrl, item);
   }
 
   updateAddress(item: Address) {
-    return this.http.put(this.baseUrl+item, item);
+    return this.http.put(this.baseUrl, item);
   }
 
 }
