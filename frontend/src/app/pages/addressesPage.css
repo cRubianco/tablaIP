@@ -28,13 +28,24 @@
 }
 .mat-column-actions{
   max-width: 100px;
+  text-align: center;
 }
 
 .spacer {
   flex: 1 1 auto;
 }
 
-.mat-form-field {
+.mat-mdc-form-field {
+  background: darkorchid;
   font-size: 14px;
   width: 100%;
+  align-self: flex-end;
+}
+
+.mdc-data-table__header-cell {
+  text-align: center;
+}
+
+.mat-mdc-header-row{
+  background-color: darkorchid;
 }

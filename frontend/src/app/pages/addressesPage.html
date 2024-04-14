@@ -1,6 +1,6 @@
 <div>
   <mat-form-field>
-    <mat-label>Filtro</mat-label>
+    <mat-label>Filtrar por:</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: tecnico" #input>
   </mat-form-field>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
