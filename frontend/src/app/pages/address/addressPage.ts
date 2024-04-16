@@ -93,13 +93,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   }
 
   //==================== Metodos =====================
-  getTitle():string{
-    if (this.edit)
-      return this.data.id ? "Editando" : "Nueva";
-    else
-      return "";
-  }
-
   /**
    * dirección seleccionada, recupero datos y los paso al formulario
    * @param event
@@ -177,13 +170,13 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       
       if (this.data._id) {
         // modify
-        console.log('grabo algo  ',this.data._id);
+        console.log('grabo algo  ',this.data);
         
-        // this.addressService.updateAddress(this.data)
-        //   .subscribe(
-        //     next => { console.log('updtAdd ', next) },
-        //     err => { console.log('updtAdd  ', err)  }
-        //   )
+        this.addressService.updateAddress(this.data._id, this.data)
+          .subscribe(
+            next => { console.log('updtAdd ', next) },
+            err => { console.log('updtAdd  ', err)  }
+          )
       } else {
         // new
         this.addressService.addAddress(this.data)
