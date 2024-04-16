@@ -11,6 +11,7 @@ import { AddressService } from '@services/addressesService';
 import { UtilServices } from '@services/utilServices';
 import { PopupService } from '@services/popupService';
 import { Constants } from '@utils/constants';
+import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-addresses',
@@ -23,6 +24,8 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   displayedColumns: string[] = ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other', 'acciones'];
   dataSource = new MatTableDataSource<Address>; //datasource
   title: string = "Direcciones IP"
+
+  clickedRows = new Set<Address[]>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -42,26 +45,23 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
     this.duplicate=state && state.duplicate;
   }
 
-  getTitle() {
-    return this.title;
-  }
-
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
 
   ngAfterViewChecked(): void {
-    
   }
   
   override ngOnInit(): void {
-    // super.ngOnInit();
-  //   if (this.duplicate) this.form.markAsDirty();
     this.getAddresses()
   }; 
 
   //==================== Metodos =====================
-  clickedRows = new Set<Address[]>();
+
+  getTitle() {
+    return this.title;
+  }
+
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -75,41 +75,18 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
       },
       error: err => console.log(err)
     })
-    
   }
 
-  editAddress(address: Address) {
-    console.log('editAddress', address);
-    this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: address })
-      // .pipe((tap) => console.log('Edit Address -> ' + JSON.stringify(data)))
-  
-      // .pipe(untilComponentDestroyed(this))
-      // .subscribe(res => {
-        // if (res) {
-        //   const text: string = `¿confirma los cambios realizados a la dirección IP ?`;
-        //   this.popupService.showConfirmationPopup(text).afterClosed()
-          // this.addressesService.updateAddress(address)
-        // } else {
-        //   this.cancel();
-        // }
-      // })
-    // this.addressesService.getAddress(id)
-    // .subscribe({
-    //   next: result => {
-    //     this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result })
-    //   }
-    // });
-      // {
-      // next: res => {
-      //   if (res._id) {
-      //       console.log("id IP address:  ", address._id);
-      //       this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
-      //     }
-      //   }
-    // }
-    //   if (result.status == 200)
-    //     this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: result.data });
-    // })
+  editAddress(id: string) {
+    console.log('editAddress.id', id);
+    const addToModify = this.addressesService.getAddress(id)
+    .subscribe( res => {
+      if (res) {
+          const text: string = `¿confirma los cambios realizados a la dirección IP ?`;
+          console.log('res -- AddressToModify-->  ', res);
+          this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
+      } 
+    });
   }
 
   deleteAddress(id: string) {
@@ -124,7 +101,6 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
           this.cancel();
         }
       })
-    
   }
 
   /**
@@ -133,11 +109,6 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   addAddress():void{
     this.utilService.navigate(Constants.URL.ADDRESS);
  }
-
-  // filtrar(event: Event) {
-  //   const filtro = (event.target as HTMLInputElement).value;
-  //   this.dataSource.filter = filtro.trim();
-  // }
 
   /**
   * cancel

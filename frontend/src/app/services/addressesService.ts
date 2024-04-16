@@ -29,8 +29,8 @@ export class AddressService  {
    * recupera item
    * @param item
    */
-  getAddress(id: string): Observable<Address> {
-    return this.http.get<Address>(this.baseUrl+id)
+  getAddress(item: string): Observable<Address> {
+    return this.http.get<Address>(this.baseUrl + item)
       .pipe(tap((data) => console.log('oneAddres',data)+JSON.stringify(data)));
   }
 
@@ -38,8 +38,9 @@ export class AddressService  {
     return this.http.post(this.baseUrl, item);
   }
 
-  updateAddress(item: Address) {
-    return this.http.put(this.baseUrl, item);
+  updateAddress(id: string, item: Address): Observable<Address> {
+    return this.http.put<Address>(this.baseUrl+id, item)
+      // .pipe(tap((data) => console.log(''+JSON.stringify(data))));  
   }
 
   deleteAddress(item: string) {

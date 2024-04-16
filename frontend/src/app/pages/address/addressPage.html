@@ -2,7 +2,7 @@
   <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
     <div>
       <mat-card>
-        <mat-card-title>{{data._id ? "Modificando" : "Agregando"}} Dirección IP</mat-card-title>
+        <mat-card-title>{{newAddress ? "Agregando" : "Modificando" }} Dirección IP</mat-card-title>
       </mat-card>
   </div>  
     <mat-card>

@@ -33,7 +33,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   form: FormGroup; //formulario
   readonly address: Address[]; //dto
   edit:boolean; //modo edicion?
-  readonly new:boolean; //flag si es nuevo
+  readonly newAddress:boolean; //flag si es nuevo
   data: any;  // dato para inicilizar el formulario
   
   filteredAddress: Observable<Address[]>;
@@ -57,9 +57,9 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
     if (state) {  //view or edit
       this.data = state.data.data;
       this.edit = this.utilService.getState().edit;
-      this.new=false;
+      this.newAddress=false;
     } else { //new
-      this.new=true;
+      this.newAddress=true;
       this.edit=true;
       this.data={};
     }
@@ -71,8 +71,8 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   ngOnInit(): void {
     //create reactive form
     this.form = this.fb.group({
-      nro: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.numeric]],
-      address: [{value: null, disabled: !this.new }, [Validators.required, CustomValidators.ipAddress]],
+      nro: [{value: null, disabled: !this.newAddress }, [Validators.required, CustomValidators.numeric]],
+      address: [{value: null, disabled: !this.edit }, [Validators.required, CustomValidators.ipAddress]],
       group: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       user: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
@@ -177,26 +177,21 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       
       if (this.data._id) {
         // modify
-        this.addressService.updateAddress(this.data)
-          .subscribe(
-            next => { console.log('updtAdd ', next) },
-            err => { console.log('updtAdd  ', err)  }
-          )
+        console.log('grabo algo  ',this.data._id);
+        
+        // this.addressService.updateAddress(this.data)
+        //   .subscribe(
+        //     next => { console.log('updtAdd ', next) },
+        //     err => { console.log('updtAdd  ', err)  }
+        //   )
       } else {
         // new
         this.addressService.addAddress(this.data)
         .subscribe(
           next => { console.log('addAddress', next) },
-          err => { console.log('Err addAddress', err) },
-          
-        )
-        console.log('response -> ', resolve );
-        console.log('response -> ', resolve(this.data) );
-        console.log('196 data -->  ', this);
-        
+          err => { console.log('Err addAddress', err) }, 
+        ) 
       }
-      console.log('196 data -->  ', this);
-      
     })
   }   
       
@@ -214,11 +209,11 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   /**
    * cancel
    */
-  cancel(){
+  cancel() {
     this.utilService.navigate(Constants.URL.ADDRESSES);
   }
 
-  onBlur(){
+  onBlur() {
     this.input.nativeElement.value = '';
   }
 
