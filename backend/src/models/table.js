@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
  const addrSchema = new Schema(
   {
-    nro: {type: Number, required: true, unique: true},
+    nro: {type: String, required: true, unique: true},
     address: {type: String, required: true, unique: true},
     group: {type: String, required: true},
     user: {type: String },
@@ -19,5 +19,5 @@ const { Schema, model } = require('mongoose')
   }
 )
 
-module.exports = model('Addresses', addrSchema)
+module.exports = model('Address', addrSchema)
 
