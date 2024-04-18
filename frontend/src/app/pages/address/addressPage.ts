@@ -99,7 +99,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
    */
   addressSelected(event:MatAutocompleteSelectedEvent):void{
     let address=event.option.value;
-    console.log('addPage 130 --> ',address);
     // ['nro', 'address', 'group', 'user', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
     this.form.controls["nro"].patchValue( address.nro, {onlySelf: true});
     this.form.controls["address"].patchValue( address.address, {onlySelf: true});
@@ -170,19 +169,17 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       
       if (this.data._id) {
         // modify
-        console.log('grabo algo  ',this.data);
-        
         this.addressService.updateAddress(this.data._id, this.data)
           .subscribe(
-            next => { console.log('updtAdd ', next) },
-            err => { console.log('updtAdd  ', err)  }
+            next => { console.log('Update ok ', next) },
+            err => { console.log('Error update  ', err)  }
           )
       } else {
         // new
         this.addressService.addAddress(this.data)
         .subscribe(
-          next => { console.log('addAddress', next) },
-          err => { console.log('Err addAddress', err) }, 
+          next => { console.log('New address ok', next) },
+          err => { console.log('Error create address', err) }, 
         ) 
       }
     })

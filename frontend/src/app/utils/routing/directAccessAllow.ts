@@ -26,8 +26,6 @@ export class DirectAccessAllow implements CanActivate {
     if (this.router.url === '/') {
       //guardo a donde quiere ir y lo redirigo el loading....
       const url = state.url.split("/");
-      console.log("--------",url);
-      
       this.router.navigate(['/'],{
         skipLocationChange:true,
         state:{

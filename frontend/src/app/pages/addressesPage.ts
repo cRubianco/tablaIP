@@ -11,7 +11,6 @@ import { AddressService } from '@services/addressesService';
 import { UtilServices } from '@services/utilServices';
 import { PopupService } from '@services/popupService';
 import { Constants } from '@utils/constants';
-import { throwDialogContentAlreadyAttachedError } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-addresses',
@@ -78,19 +77,16 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   }
 
   editAddress(id: string) {
-    console.log('editAddress.id', id);
     const addToModify = this.addressesService.getAddress(id)
     .subscribe( res => {
       if (res) {
           const text: string = `¿confirma los cambios realizados a la dirección IP ?`;
-          console.log('res -- AddressToModify-->  ', res);
           this.utilService.navigate(Constants.URL.ADDRESS, { edit: true, data: res })
       } 
     });
   }
 
   deleteAddress(id: string) {
-    console.log('deleteAddress', id);
     const text: string = `¿Está seguro que desea borrar la dirección IP ?`;
     this.popupService.showConfirmationPopup(text).afterClosed()
       .pipe(untilComponentDestroyed(this))
