@@ -2,7 +2,7 @@
 export interface Address {
   nro: string;
   address: string;
-  grupo: string;
+  group: string;
   user: string;
   pcname: string;
   dependency: string;
