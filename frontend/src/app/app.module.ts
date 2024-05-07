@@ -12,7 +12,7 @@ import { ServicesModule } from './services.module';
 import { BasePage } from '@pages/layout/basePage';
 import { Footer } from '@pages/layout/footer';
 import { Header } from '@pages/layout/header';
-import { AddressesPage } from '@pages/addressesPage';
+import { AddressesPage } from '@pages/address/addressesPage';
 import { AddressPage } from '@pages/address/addressPage';
 import { ImageButtonComponent } from '@components/buttons/imageButtonComponent';
 import { SubmitButtonComponent } from '@components/buttons/submitButtonComponent';
@@ -57,6 +57,6 @@ export function initializeApp() {
     {provide: APP_INITIALIZER,useFactory: initializeApp, multi: true},
     DatePipe
   ],
-  bootstrap: [DashboardPage]
+  bootstrap: [BasePage]
 })
 export class AppModule { }

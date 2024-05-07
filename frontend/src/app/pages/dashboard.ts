@@ -6,7 +6,7 @@ import { OnDestroyMixin, untilComponentDestroyed } from "@w11k/ngx-componentdest
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'dashboard-page',
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.css']
 })
@@ -23,7 +23,7 @@ export class DashboardPage extends OnDestroyMixin implements OnInit {
    */
   public error: string;
   
-    private readonly state;
+  private readonly state;
 
   /**
    * constructor
@@ -42,34 +42,34 @@ export class DashboardPage extends OnDestroyMixin implements OnInit {
     ngOnInit(){
     //usuario no logueado, termino de construir la pagina
       this.form = this.fb.group({
-        user: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)],
-        password: 'hola',
-        rememberMe: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)!=null]
+        // user: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)],
+        // password: 'hola',
+        // rememberMe: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)!=null]
       });
-      this.form.valueChanges
-        .pipe(untilComponentDestroyed(this))
-        .subscribe(()=>{
-        this.error="";//clean error message
 
-      });
+      // this.form.valueChanges
+      //   .pipe(untilComponentDestroyed(this))
+      //   .subscribe(()=>{
+      //   this.error="";//clean error message
+
+      // });
+
       //chequeo si ya estoy loegueado
-      if (this.utilService.isLogged()) {
-        this.enter();
-      } else {
-        sessionStorage.clear();
-      }
+      // if (this.utilService.isLogged()) {
+      //   console.log('esta logueado? ',this.utilService.isLogged());
+        
+      //   this.enter();
+      // } else {
+      //   sessionStorage.clear();
+      // }
+
     }
 
   /**
-   * ingresa al dashboard o pagina sin rol.
+   * ingresa a la tabla.
    */
-   enter(){
-      if (this.state && this.state.linkAction)
-        console.log('68 --  ',this.state);
-        
-          this.utilService.linkNavigate(this.state.linkAction, this.state.linkId);
-        // else
-        //   this.utilService.navigate(Constants.URL.DASHBOARD);
+  enter(){
+    this.utilService.navigate(Constants.URL.ADDRESSES);
   }
   
 }

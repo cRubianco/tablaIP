@@ -112,5 +112,9 @@ export class AddressesPage extends BaseSectionPage implements OnInit {
   cancel(){
     this.utilService.navigate(Constants.URL.ADDRESSES);
   }
+
+  goBack() {
+    this.utilService.navigate(Constants.URL.DASHBOARD);
+  }
   
 }

@@ -14,7 +14,7 @@ import { UtilServices } from '@services/utilServices';
  * Pagina base y layout
  */
 @Component({
-  selector: 'app-basePage',
+  selector: 'app-root',
   templateUrl: './basePage.html',
   styleUrls: ['./basePage.css'],
 })
@@ -45,12 +45,9 @@ export class BasePage extends OnDestroyMixin {
   
   newAddress() {
     const dialogRef = this.dialog.open(AddressPage);
-    
-
     dialogRef.afterClosed().subscribe(res => {
       console.log('the dialog after closed ');
       this.address = res;
-      
     })
   }
 }

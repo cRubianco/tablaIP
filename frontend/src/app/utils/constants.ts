@@ -16,6 +16,7 @@ import * as moment from "moment";
       LOGIN: "login",
       ADDRESSES:"addresses",
       ADDRESS:"address",
+      BASEPAGE: "basepage",
       REDIRECT: "redirect",
     },
 

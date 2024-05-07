@@ -1,4 +1,4 @@
-<div>
+
   <mat-form-field>
     <mat-label>Filtrar por:</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: tecnico" #input>
@@ -91,10 +91,15 @@
   </mat-paginator>
 
   <div fxLayout="row wrap" class="btnGroup" fxLayoutAlign="end center">
+    <button mat-fab class="fab-bottom-left" (click)="goBack()" matTooltipPosition="left"
+      matTooltip="Volver">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
     <button mat-fab color="accent" class="fab-bottom-right" (click)="addAddress()" matTooltipPosition="left"
       matTooltip="Nueva direc Ip">
       <mat-icon>add</mat-icon>
     </button>
   </div>
 
-</div>
+

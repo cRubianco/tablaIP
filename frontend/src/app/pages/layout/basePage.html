@@ -4,7 +4,8 @@
 	<layout-header *ngIf="this.utilService.isLogged()"></layout-header>
 
 	<div id="layoutPrincipal" fxLayout="column" fxFlexFill>
-		<main class="content" [ngStyle]="{'padding': '20px' }">
+		<!-- <main class="content" [ngStyle]="{'padding': '20px' }"> -->
+		<main class="content" >
 			<router-outlet></router-outlet>
 		</main>	
 	</div>

@@ -5,7 +5,7 @@ import { CanDeactivateAbstract } from "@utils/routing/canDeactivateAbstract";
 import { UtilServices } from "@services/utilServices";
 
 /**
- * componente abstracto que representa una seccion en un formulario complejo
+ * componente abstracto que representa una sección en un formulario complejo
  */
 @Directive()
 export abstract class BaseSectionPage extends CanDeactivateAbstract implements OnInit {
@@ -18,10 +18,12 @@ export abstract class BaseSectionPage extends CanDeactivateAbstract implements O
    * dto
    */
   readonly data: any; //dato para inicializar formulario
+  
   /**
    * modo edicion?
    */
   edit:boolean;
+  
   /**
    * panel step
    */

@@ -20,6 +20,10 @@
   background: #9C27B0;
 }
 
+.fab-bottom-left {
+  background-color: #FFC107;
+}
+
 .mat-column-user{
   max-width: 180px;
 }

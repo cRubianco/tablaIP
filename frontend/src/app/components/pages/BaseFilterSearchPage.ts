@@ -12,7 +12,6 @@ import {Pageable} from "@model/pageable";
 import { Page } from "@model/dto/page";
 import { ApiResponse } from "@model/dto/apiResponse";
 import {UtilServices} from "@services/utilServices";
-import {PopupService} from "@services/popupService";
 import {Constants} from "@utils/constants";
 
 /**
@@ -49,7 +48,7 @@ export abstract class BaseFilterSearchPage extends OnDestroyMixin implements OnI
     //recupero el link id si tengo que ir directo a un registro
     const state = utilService.getState();
     if (state) this.linkId = state.linkId;
-    //parche para detectar la navegacion a la misma pagina
+    //parche para detectar la navegacion a la misma página
     this.utilService.getRouterEvents().pipe(untilComponentDestroyed(this))
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
