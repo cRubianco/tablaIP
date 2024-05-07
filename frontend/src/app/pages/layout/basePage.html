@@ -1,13 +1,14 @@
+<mat-sidenav-container fullscreen class="mat-typography">
+
 <!-- menu -->
-<layout-header ></layout-header>
+	<layout-header *ngIf="this.utilService.isLogged()"></layout-header>
 
-<div >
-	<mat-toolbar color="primary" fxLayout="row" class="toolbar" >
-		<span class="navbar-spacer"></span>
-		<span>{{getTitle()}}</span>
-		<span class="navbar-spacer"></span>
-	</mat-toolbar>
-</div>
+	<div id="layoutPrincipal" fxLayout="column" fxFlexFill>
+		<main class="content" [ngStyle]="{'padding': '20px' }">
+			<router-outlet></router-outlet>
+		</main>	
+	</div>
 
-<router-outlet></router-outlet>
-<layout-footer ></layout-footer>
+	<layout-footer *ngIf="this.utilService.isLogged()" ></layout-footer>
+
+</mat-sidenav-container>	

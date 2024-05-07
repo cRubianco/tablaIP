@@ -22,6 +22,7 @@ import { FormRowComponent } from '@components/forms/formRowComponent';
 import { FormSelectFieldComponent } from '@components/forms/formSelectFieldComponent';
 import { FormSaveComponent } from '@components/forms/formSaveComponent';
 import { FormFieldComponent } from '@components/forms/formFieldComponent';
+import { DashboardPage } from '@pages/dashboard';
 
 export function initializeApp() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -30,7 +31,7 @@ export function initializeApp() {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent, DashboardPage,
     // --- Components ---
     ImageButtonComponent, SubmitButtonComponent,
     // --- pages ---
@@ -56,6 +57,6 @@ export function initializeApp() {
     {provide: APP_INITIALIZER,useFactory: initializeApp, multi: true},
     DatePipe
   ],
-  bootstrap: [BasePage]
+  bootstrap: [DashboardPage]
 })
 export class AppModule { }

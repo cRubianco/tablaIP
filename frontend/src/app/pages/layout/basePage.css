@@ -48,7 +48,7 @@
 .content {
   flex: 1;
   padding: 20px;
-  background: #4053b3;
+  background: #E9EAEF;
   margin: 0px;
 }
 
@@ -56,4 +56,17 @@ mat-icon {
   width: 35px;
 }
 
+::ng-deep mat-sidenav:not(.mat-drawer-opened) .mat-list-item-content .mat-icon {
+  margin-right: 0 !important;
+}
 
+
+::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
+::ng-deep mat-sidenav-content #layoutPrincipal ::ng-deep layout-header header mat-toolbar #menu {
+    margin-left: 74px!important
+  
+}
+::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
+::ng-deep mat-sidenav-content #layoutPrincipal .content:nth-child(2){
+    margin-left: 60px !important;
+}

@@ -1,0 +1,93 @@
+  /*Login V2*/
+  
+  .card-500 {
+    width: 500px;
+    margin-bottom: 0px;
+    padding: 3rem !important;
+    background-color: #9C27B0 !important;
+}
+
+#background-acciona {
+    background-image: url('../../assets/images/no_user.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#titleLogin {
+    margin-top: 3.5rem;
+}
+
+#titleLogin,
+#subtitleLogin {
+    color: #fff!important;
+    font-weight: 200;
+}
+
+#titleLogin h4 {
+    font-size: 2.125rem;
+    line-height: 2.5rem;
+    font-weight: 200;
+}
+
+#subtitleLogin h6 {
+    font-size: 1.25rem !important;
+    line-height: 2rem !important;
+    font-weight: 400!important;
+}
+
+ ::ng-deep .login .mat-form-field,
+ ::ng-deep .login .mat-form-field-label,
+ ::ng-deep .login .mat-focused .mat-form-field-placeholder {
+    color: white !important;
+}
+
+ ::ng-deep .login .mat-form-field-underline,
+ ::ng-deep .login .mat-form-field-underline .mat-form-field-ripple {
+    background-color: white !important;
+}
+
+ ::ng-deep .login .mat-input-element .mat-form-field-autofill-control {
+    background: none !important;
+}
+/*Quitar fondo de autocompletado*/
+
+ ::ng-deep .login input:-webkit-autofill,
+ ::ng-deep .login input:-webkit-autofill:hover,
+ ::ng-deep .login input:-webkit-autofill:focus,
+ ::ng-deep .login input:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #fff !important;
+}
+::ng-deep .login input{
+      caret-color: #fff;
+  }
+button.submitV2 {
+    width: 100%;
+    background-color: #e8b83e !important;
+    color: #373a36 !important;
+    height: 42px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 1em;
+}
+
+ ::ng-deep .login.mat-checkbox {
+    margin-top: 1em;
+}
+
+ ::ng-deep .login .mat-checkbox-label {
+    color: white !important;
+}
+
+ ::ng-deep .login .mat-checkbox-frame {
+    border: 1px solid white !important;
+}
+
+ ::ng-deep .login .mat-checkbox-input:checked~.mat-checkbox-background {
+    background: #ffb600;
+}
+
+ ::ng-deep .login.mat-error,
+ ::ng-deep .login .mat-error {
+    color: white !important;
+}
