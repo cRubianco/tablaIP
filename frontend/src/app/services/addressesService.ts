@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 
-import { environment } from "src/enviroments/enviroment";
+import { environment } from "src/environments/environment";
 import { Address } from "@model/address";
 import { Constants } from "@utils/constants";
 

@@ -3,5 +3,5 @@
  */
   export const environment = {
     production: true,
-    SERVER: ""
+    SERVER: "http://172.20.99.6:3100"
   } 

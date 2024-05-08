@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup } from "@angular/forms";
 
-import { environment } from "src/enviroments/enviroment";
+import { environment } from "src/environments/environment";
 
 /**
  * utilidades varias
