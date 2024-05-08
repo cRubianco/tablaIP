@@ -75,12 +75,12 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       address: [{value: null, disabled: !this.edit }, [Validators.required, CustomValidators.ipAddress]],
       group: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
       user: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
+      pcname: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alphanumeric]],
       dependency: [{value: null, disabled: !this.edit}, [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      opersystem: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alpha]],
-      observ: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alpha]],
+      opersystem: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alphanumeric]],
+      observ: [{value: null, disabled: !this.edit}, [Validators.maxLength(50), CustomValidators.alphanumeric]],
       type: [{value: null, disabled: !this.edit}, [Validators.required, CustomValidators.alpha]],
-      other: [{value: null, disabled: !this.edit}, [CustomValidators.alpha]],
+      other: [{value: null, disabled: !this.edit}, [CustomValidators.alphanumeric]],
     });
     //set initials values
     if (this.data != null) {
@@ -184,17 +184,6 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       }
     })
   }   
-      
-      // then((response)=>{
-      //   if (response.status==200) {
-      //     resolve(true);
-      //     this.utilService.navigate(Constants.URL.ADDRESSES);
-      //   } else {
-      //     resolve(false);
-      //   }
-      // });
-    // });
-  
   
   /**
    * cancel
