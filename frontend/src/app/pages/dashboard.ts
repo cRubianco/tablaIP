@@ -40,29 +40,9 @@ export class DashboardPage extends OnDestroyMixin implements OnInit {
     * init
     */
     ngOnInit(){
-    //usuario no logueado, termino de construir la pagina
+    //usuario no logueado
       this.form = this.fb.group({
-        // user: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)],
-        // password: 'hola',
-        // rememberMe: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER)!=null]
       });
-
-      // this.form.valueChanges
-      //   .pipe(untilComponentDestroyed(this))
-      //   .subscribe(()=>{
-      //   this.error="";//clean error message
-
-      // });
-
-      //chequeo si ya estoy loegueado
-      // if (this.utilService.isLogged()) {
-      //   console.log('esta logueado? ',this.utilService.isLogged());
-        
-      //   this.enter();
-      // } else {
-      //   sessionStorage.clear();
-      // }
-
     }
 
   /**

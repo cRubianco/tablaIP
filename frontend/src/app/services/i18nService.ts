@@ -3,7 +3,7 @@ import {AbstractControl} from "@angular/forms";
 
 /**
  * Servicio de frases
- * TODO: esperando a ver como cambia la implemetnacion de angular, para no utilizar un paquete externo
+ * TODO: esperando a ver como cambia la implementacion de angular, para no utilizar un paquete externo
  */
 @Injectable()
 export class  I18nService {

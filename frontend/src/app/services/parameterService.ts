@@ -21,15 +21,15 @@ export class ParametersService {
   /**
    * Tipos
    */
-  types:[string, string][]=[["Antena","A"], ["Impresora","I"], ["Router","R"], ["Servidor","S"], ["Switch","Sw"], ["Terminal","T"],
+  types:[string, string][]=[["Antena","A"], ["Impresora","I"], ["PC", "P"], ["Router","R"], ["Servidor","S"], ["Switch","Sw"], ["Terminal","T"],
                           ["Teléfono","Tel"]];  
 
   /**
    * Groups
    */
   groups:[string, string][]=[ ["Acción Social","Social"], ["Asesoría Legal","AsLegal"], ["Contaduria","Conta"], ["Corralon","Corra"], 
-                              ["Informática","Infor"], ["Obras Públicas","Obras"], ["Rentas","Rentas"], ["Recursos Humanos","Perso"],
-                              ["Servicio Local","Social"], ["Tesorería","Teso"], ];
+                              ["Hospital","Hosp"], ["Informática","Infor"], ["Obras Públicas","Obras"], ["Rentas","Rentas"], 
+                              ["Recursos Humanos","Perso"], ["Servicio Local","Social"], ["Tesorería","Teso"], ["Turismo","Turism"], ];
 
   /**
    * provincias

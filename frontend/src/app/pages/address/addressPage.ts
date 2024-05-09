@@ -25,9 +25,7 @@ import { Constants } from "@utils/constants";
 })
 export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFormInterface {
 
-  // readonly pageName="Address";
   // displayedColumns: string[] = ['nro', 'address', 'group', 'address', 'pcname', 'dependency', 'opersystem', 'observ', 'type', 'other'];
-  // readonly dataSource:MatTableDataSource<Address> = new MatTableDataSource<Address>(); //dataSource
 
   readonly Utils=Utils;
   form: FormGroup; //formulario
@@ -127,8 +125,7 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
   /**
    * evento al cerrar autocomplete
    */
-  closeAddress(){
-    // console.log('closeAddress ', this.addr);    
+  closeAddress(){   
     if (typeof this.form.controls["address"].value === "string") {
       this.form.controls["nro"].patchValue(null);
       this.form.controls["address"].patchValue(null);
@@ -166,22 +163,11 @@ export class AddressPage extends CanDeactivateAbstract implements OnInit, SaveFo
       Object.keys(this.form.value).forEach(addr => {
         this.data[addr]=this.form.value[addr];
       });
-      
-      if (this.data._id) {
-        // modify
-        this.addressService.updateAddress(this.data._id, this.data)
-          .subscribe(
-            next => { console.log('Update ok ', next) },
-            err => { console.log('Error update  ', err)  }
-          )
-      } else {
-        // new
-        this.addressService.addAddress(this.data)
-        .subscribe(
-          next => { console.log('New address ok', next) },
-          err => { console.log('Error create address', err) }, 
-        ) 
-      }
+      this.addressService.saveAddress(this.data)
+      .subscribe(
+        next => { this.utilService.navigate(Constants.URL.ADDRESSES )},
+        err => { console.log('Error create address', err) }, 
+      ) 
     })
   }   
   

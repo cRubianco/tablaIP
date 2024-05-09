@@ -9,21 +9,20 @@ import { Constants } from "@utils/constants";
 @Injectable()
 export class AddressService  {
 
-    /**
-   * url servicio empleados
+  /**
+   * url 
    */
-    protected baseUrl:string=environment.SERVER+Constants.URL.API_PATH;
-    protected name: string="Dirección IP";
+  protected baseUrl: string = environment.SERVER + Constants.URL.API_PATH;
+  protected name: string = "Dirección IP";
 
-    constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
-    //======== metodos ==========
+  //======== metodos ==========
 
-    getAddresses(): Observable<Address[]> {
-      return this.http.get<Address[]>(this.baseUrl)
-        .pipe(tap((data) => console.log("all addresses",data)+ JSON.stringify(data)));
-        
-    }
+  getAddresses(): Observable<Address[]> {
+    return this.http.get<Address[]>(this.baseUrl)
+      .pipe(tap((data) => console.log("all addresses",data)+ JSON.stringify(data)));
+  }
 
   /**
    * recupera item
@@ -40,7 +39,14 @@ export class AddressService  {
 
   updateAddress(id: string, item: Address): Observable<Address> {
     return this.http.put<Address>(this.baseUrl+id, item)
-      // .pipe(tap((data) => console.log(''+JSON.stringify(data))));  
+  }
+
+  saveAddress(item: Address) {
+    if (item._id) {
+      return this.http.put<Address>(this.baseUrl+item._id, item)
+    } else {
+      return this.http.post<Address>(this.baseUrl, item)
+    }
   }
 
   deleteAddress(item: string) {
