@@ -4,6 +4,9 @@
 # dist
 dist
 
+# Documentos
+/frontend/Docum
+
 node_modules
 package-lock.json
 
