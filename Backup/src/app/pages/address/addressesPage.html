@@ -1,0 +1,105 @@
+
+  <mat-form-field>
+    <mat-label>Filtrar por:</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo: tecnico" #input>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="nro">
+        <th mat-header-cell *matHeaderCellDef>Nro</th>
+        <td mat-cell *matCellDef="let address">{{address.nro}}</td>
+      </ng-container>
+    
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Dirección</th>
+        <td mat-cell *matCellDef="let address">{{address.address}}</td>
+      </ng-container>
+
+      <!-- Group Column -->
+      <ng-container matColumnDef="group">
+        <th mat-header-cell *matHeaderCellDef>Grupo</th>
+        <td mat-cell *matCellDef="let address">{{address.group}}</td>
+      </ng-container>
+    
+      <!-- User Column -->
+      <ng-container matColumnDef="user">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let address">{{address.user}}</td>
+      </ng-container>
+    
+      <!-- Pcname Column -->
+      <ng-container matColumnDef="pcname">
+        <th mat-header-cell *matHeaderCellDef>Nomb PC</th>
+        <td mat-cell *matCellDef="let address">{{address.pcname}}</td>
+      </ng-container>
+    
+      <!-- Dependencies Column -->
+      <ng-container matColumnDef="dependency">
+        <th mat-header-cell *matHeaderCellDef>Dependencia</th>
+        <td mat-cell *matCellDef="let address">{{address.dependency}}</td>
+      </ng-container>
+    
+      <!-- Opersystem Column -->
+      <ng-container matColumnDef="opersystem">
+        <th mat-header-cell *matHeaderCellDef>Sis.Oper.</th>
+        <td mat-cell *matCellDef="let address">{{address.opersystem}}</td>
+      </ng-container>
+    
+      <!-- Observ Column -->
+      <ng-container matColumnDef="observ">
+        <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+        <td mat-cell *matCellDef="let address">{{address.observ}}</td>
+      </ng-container>
+    
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let address">{{address.type}}</td>
+      </ng-container>
+    
+      <!-- Other Column -->
+      <ng-container matColumnDef="other">
+        <th mat-header-cell *matHeaderCellDef>Otros</th>
+        <td mat-cell *matCellDef="let address">{{address.other}}</td>
+      </ng-container>
+    
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let address">
+          <button mat-raised-button (click)="editAddress(address._id)">
+            Modificar
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-raised-button (click)="deleteAddress(address._id)" >
+            Eliminar
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Seleccione cada de items por página">
+  </mat-paginator>
+
+  <div fxLayout="row wrap" class="btnGroup" fxLayoutAlign="end center">
+    <button mat-fab class="fab-bottom-left" (click)="goBack()" matTooltipPosition="left"
+      matTooltip="Volver">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <button mat-fab color="accent" class="fab-bottom-right" (click)="addAddress()" matTooltipPosition="left"
+      matTooltip="Nueva direc Ip">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+

@@ -1,0 +1,11 @@
+
+<div class="name">
+  <h1 mat-dialog-title>Solicitud de confirmación:</h1>
+
+  <div mat-dialog-content [innerHTML]="message"></div>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button backgroun-color="#d3da0f" (click)="onNotClick()">No</button>
+    <button mat-raised-button color="accent" [mat-dialog-close]="true">Si</button>
+  </div>
+</div>

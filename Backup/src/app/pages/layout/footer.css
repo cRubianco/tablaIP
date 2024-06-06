@@ -1,0 +1,10 @@
+.footer {
+  height: 20px;
+  font-size: 16px !important;
+  line-height: 25px;
+  font-weight: 300;
+  text-align: center;
+  /* background-color: rgba(55, 58, 54, 0.5) !important; */
+  color: #fff;
+}
+

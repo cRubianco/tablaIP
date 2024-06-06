@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.message}}</h1>
+<div mat-dialog-content [formGroup]="form" style="min-width: 350px; min-height: 100px">
+  <form-row>
+    <form-select-field fxFlex="100" name="Item" [form]="form" controlName="item" [options]="data.items"></form-select-field>
+  </form-row>
+</div>
+<!--suppress HtmlDeprecatedAttribute -->
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="accent" (click)="save()" [disabled]="form.invalid">Guardar</button>
+</div>
