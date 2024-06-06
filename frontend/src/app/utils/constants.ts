@@ -4,7 +4,7 @@ import * as moment from "moment";
  *  Constantes
  */
   export const Constants = {
-    VERSION:"1.2.1",//app version
+    VERSION:"1.2.2",//app version
 
     TITLE: 'Tabla IP',
     SUB_TITLE: 'Direcciones IP',
