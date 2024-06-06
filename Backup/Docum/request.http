@@ -1,4 +1,0 @@
-@api = http://localhost:3200/api
-
-### GET /allAddress
-GET {{api}}
