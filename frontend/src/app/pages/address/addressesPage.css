@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+.filtertxt {
+  border: none;
+  padding: 0;
+  outline: none;
+  font: inherit;
+  text-align: center;
+  color: #4adf51;
+}
+
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
