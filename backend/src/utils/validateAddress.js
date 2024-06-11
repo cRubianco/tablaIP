@@ -2,7 +2,7 @@ const { check } = require('express-validator');
 const validateResults = require('../utils/validate.js')
 
 const validAddress = [
-  check("nro").notEmpty().isNumeric().exists(),
+  check("nro").notEmpty().exists(),
   check("address").notEmpty().exists().isIP(),
   check("group").notEmpty(),
   check("user"), 
@@ -32,8 +32,8 @@ const validateIPAddress = [
 ];
 
 validateUpdateAddress = [
-  check("nro").notEmpty().isNumeric().exists(),
-  check("address").notEmpty().exists().isIP(),
+  check("nro").notEmpty(),
+  check("address").notEmpty().isIP(),
   check("group"),
   check("user"), 
   check("pcname"), 

@@ -1,0 +1,48 @@
+<div>
+  <form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+    <div>
+      <mat-card>
+        <mat-card-title>{{newAddress ? "Agregando" : "Modificando" }} Dirección IP</mat-card-title>
+      </mat-card>
+  </div>  
+    <mat-card>
+      <mat-card-content>
+        <form-row>
+          <form-field fxFlex="40" fxFlex.xs="100" name="nro" [form]="form" controlName="nro"
+              [description]="i18nService.getMessage('VALIDATOR_NUMERIC')"></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Address" [form]="form" controlName="address" 
+              [description]="i18nService.getMessage('VALIDATOR_ADDRESS_IP')"></form-field>
+        </form-row>
+      
+        <form-row>
+          <form-select-field fxFlex="40" fxFlex.xs="100" name="Grupo" [form]="form" controlName="group" 
+              [options]="parametersService.groups"></form-select-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="User" [form]="form" controlName="user"></form-field>
+        </form-row>
+      
+        <form-row>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Nom PC" [form]="form" controlName="pcname" ></form-field>
+          <form-select-field fxFlex="40" fxFlex.xs="100" name="Dependencia" [form]="form" controlName="dependency"
+              [options]="parametersService.dependencies"></form-select-field>
+        </form-row>
+      
+        <form-row>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Sis Oper" [form]="form" controlName="opersystem" ></form-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Observaciones" [form]="form" controlName="observ"></form-field>
+        </form-row>      
+
+        <form-row>
+          <form-select-field fxFlex="40" fxFlex.xs="100" name="Tipo" [form]="form" controlName="type" 
+              [options]="parametersService.types" ></form-select-field>
+          <form-field fxFlex="40" fxFlex.xs="100" name="Otros" [form]="form" controlName="other"></form-field>
+        </form-row>
+
+      </mat-card-content>
+    </mat-card>
+
+    <span class="profile"></span>
+    <form-save-field [page]="this"></form-save-field>
+    <!-- <form-save-field [page]="this" [canEdit]="authService.checkPermission(Permission.USER_EDIT)"></form-save-field> -->
+
+  </form>
+</div>

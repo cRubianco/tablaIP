@@ -1,0 +1,73 @@
+.menuActive {
+  color: rgba(0, 255, 115, 0.43);
+}
+
+.profile {
+  color: #ffffff;
+  background:#9C27B0
+}
+
+.navbar-spacer {
+  flex: 1 1 auto;
+}
+
+.navbar-spacer-button {
+  padding-right: 20px;
+  flex: 1 1 auto;
+}
+
+.sidebar {
+  width: 190px;
+  color: rgb(251, 248, 248);
+  background: #ce1ee9a9;
+  
+}
+
+::ng-deep .sidebar .mat-list-item-content {
+  color: white !important;
+  font-weight: 300 !important;
+}
+
+::ng-deep .mat-list-item-content .mat-icon {
+  margin-right: 1rem;
+}
+
+::ng-deep .mat-sidenav .profile {
+  color: #9C27B0;
+  margin: 10px 0px;
+  padding: 0.5rem;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.toolbar {
+  height: 40px;
+}
+
+.content {
+  flex: 1 0 auto;
+  /* padding: 20px; */
+  background: #E9EAEF;
+  margin: 0px;
+}
+
+mat-icon {
+  width: 35px;
+}
+
+::ng-deep mat-sidenav:not(.mat-drawer-opened) .mat-list-item-content .mat-icon {
+  margin-right: 0 !important;
+}
+
+
+::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
+::ng-deep mat-sidenav-content #layoutPrincipal ::ng-deep layout-header header mat-toolbar #menu {
+  margin-left: 74px!important;
+    
+  
+}
+::ng-deep mat-sidenav:not(.mat-drawer-opened) ~  
+::ng-deep mat-sidenav-content #layoutPrincipal .content:nth-child(2){
+  margin-left: 60px !important;
+}

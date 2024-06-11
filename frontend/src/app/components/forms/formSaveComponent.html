@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-actions align="end" class="noPadding" style="margin-top: -8px !important;">
+
+    <ng-container *ngIf="redirect">
+      <button mat-button matTooltipPosition="above" matTooltip="No se guardan los cambios"  (click)="close()">Cerrar</button>
+    </ng-container>
+
+    <ng-container *ngIf="!redirect">
+      <button mat-button matTooltipPosition="above" matTooltip="No se guardan los cambios" *ngIf="!redirect"
+              (click)="cancel()">{{page.edit && page.form.dirty ? "Cancelar" : "Volver"}}</button>
+
+      <submit-button *ngIf="page.edit" matTooltipPosition="above" matTooltip="Guardar cambios"
+                     [click]="save.bind(this)" [disabled]="page.form.pristine">Guardar</submit-button>
+
+      <button mat-raised-button color="accent" matTooltipPosition="above" matTooltip="Editar"
+              *ngIf="!page.edit && canEdit" (click)="edit()">Editar</button>
+    </ng-container>
+
+  </mat-card-actions>
+</mat-card>
