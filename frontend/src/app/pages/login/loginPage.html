@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxFlexFill>
+  <div fxFlex="30" fxflex.md="30" fxFlex.xs="100" fxFlexFill fxLayoutAlign="start center">
+    <form novalidate [formGroup]="formgr" >
+      <label><span>Usuario</span>
+        <input type="text" formControlName="username" placeholder="Ingrese su usuario"/>
+      </label>
+      <label><span>Contraseña</span>
+        <input type="text" formControlName="password" />
+      </label>
+      <button type="submit">Sign up</button>   
+    </form>
+  </div>
+  <div fxFlex="70" fxflex.md="70" fxFlex.xs="0" fxFlexFill id="ip-background"></div>
+</div>

@@ -30,7 +30,9 @@ router.post('/', validAddress, newAddress);
  */
 router.put('/:id', validateAddressId, validateUpdateAddress, updateAddress);
 
-// //Delete address
+/**
+ *  Borra una dirección IP
+ */
 router.delete('/:id', validateAddressId, deleteAddress);
  
 module.exports = router;

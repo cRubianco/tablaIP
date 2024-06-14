@@ -23,6 +23,7 @@ const getAllAddress = async (req, res, next) => {
  * @param {*} res 
  */
 const getAddress = async (req, res, next) => {
+  console.log('ruta - ',req);
   try {
     const body = matchedData(req);
     const data = await Address.findById(body.id);

@@ -4,7 +4,7 @@ const morgan  = require('morgan')
 const cors = require('cors' )
 // const path = require('path')
 
-const router = require('./routes/table.route.js')
+// const router = require('./routes/table.route.js')
 
 const app = express();
 
@@ -20,7 +20,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //routes
-app.use('/api', router)
+// app.use('/api', router)
+app.use('/api', require('./routes/routes'));
 
 //Start server
 app.listen(PORT, () => {

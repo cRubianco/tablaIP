@@ -14,6 +14,7 @@ import * as moment from "moment";
       TITLE: 'Tabla de IP',
       DASHBOARD:"dashboard",
       LOGIN: "login",
+      NO_ROLE: "noRole",
       ADDRESSES:"addresses",
       ADDRESS:"address",
       BASEPAGE: "basepage",
