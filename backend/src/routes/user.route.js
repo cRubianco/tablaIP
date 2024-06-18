@@ -13,7 +13,6 @@ router.get('/', getAllUsers);
 router.get('/login', login);
 
 router.get('/:id', getUser);
-
 /**
  * Crea un nuevo usuario
  */

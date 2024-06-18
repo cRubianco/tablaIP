@@ -23,10 +23,9 @@ const getAllUsers = async (req, res, next) => {
  * @param {*} res 
  */
 const getUser = async (req, res, next) => {
-  console.log('ruta - ',req);
   try {
     const body = matchedData(req);
-    console.log("id --> ", body);
+    console.log('body --> ', body);
     const data = await User.findById(body.id);
     res.send({data})
   } catch (e) {

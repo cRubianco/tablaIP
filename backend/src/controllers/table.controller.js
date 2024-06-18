@@ -23,7 +23,6 @@ const getAllAddress = async (req, res, next) => {
  * @param {*} res 
  */
 const getAddress = async (req, res, next) => {
-  console.log('ruta - ',req);
   try {
     const body = matchedData(req);
     const data = await Address.findById(body.id);
@@ -54,7 +53,6 @@ const newAddress = async (req, res, next) => {
     const body = matchedData(req)
     const data = await Address.create(body);
     res.send({data});
-
   } catch (err) {
     handleHttpError(res, "ERROR_CREATE_ADDRESS");
   }

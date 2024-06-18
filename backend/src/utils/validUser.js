@@ -10,7 +10,8 @@ const validExistUser = [
 ];
 
 const validUser = [
-  check("username", 'El usuario debe tener mas de 6 caracteres y menos de 15').isLength({min:5, max:8}), 
+  check("username", 'El usuario debe tener mas de 6 caracteres y menos de 15').isLength({min:5, max:8}),
+  check("password", 'La contraseña debe tener mas de 6 caracteres y menos de 15').isLength({min:5, max:8}), 
   (req, res, next) => {
     return validateResults(req, res, next);
   }
