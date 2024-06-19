@@ -23,6 +23,8 @@ import { FormSelectFieldComponent } from '@components/forms/formSelectFieldCompo
 import { FormSaveComponent } from '@components/forms/formSaveComponent';
 import { FormFieldComponent } from '@components/forms/formFieldComponent';
 import { DashboardPage } from '@pages/dashboard';
+import { LoginPage } from '@pages/login/loginPage';
+import { FormFieldInputTypeComponent } from '@components/forms/formFieldInputTypeComponent';
 
 export function initializeApp() {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -37,10 +39,12 @@ export function initializeApp() {
     // --- pages ---
     BasePage, Footer, Header,
     AddressPage, AddressesPage,
+    // --- login ---
+    LoginPage,
     //--- popups comunes ----
     ConfirmationPopup, SelectPopup,
     // ------ forms -----------
-    FormFieldComponent, FormRowComponent, FormSaveComponent, FormSelectFieldComponent, 
+    FormFieldComponent, FormRowComponent, FormSaveComponent, FormFieldInputTypeComponent, FormSelectFieldComponent, 
     
   ],
   imports: [

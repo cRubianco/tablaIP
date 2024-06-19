@@ -10,6 +10,7 @@ import { DirectAccessGuard } from '@utils/routing/directAccessGuard';
 import { CanDeactivateGuard } from '@utils/routing/canDeactivateGuard';
 import { DirectAccessAllow } from '@utils/routing/directAccessAllow';
 import { PopupService } from '@services/popupService';
+import { AuthService } from '@services/authService';
 
 
 
@@ -26,10 +27,13 @@ import { PopupService } from '@services/popupService';
     // {
       // provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true
     // },
+    // Servicio authorización
+    AuthService,
+    
     // servicios utilidades
     UtilServices, I18nService, AddressService, ParametersService, PopupService,
   
-    // servicios navegacione
+    // servicios navegación
     DirectAccessGuard, CanDeactivateGuard, DirectAccessAllow,
   ]
 })

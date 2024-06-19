@@ -16,6 +16,7 @@ export class UserService {
    * url
    */
   protected baseUrl:  string = environment.SERVER + Constants.URL.API_PATH;
+  protected pageUrl: string = this.baseUrl+'users/';
   protected name: string="El usuario";
 
   // ============= constructor ====================
@@ -25,11 +26,11 @@ export class UserService {
    * Recupera los usuarios con rol Tecnico
    */
     getTechnicians(): Promise<ApiResponse<User[]>> {
-      return this.http.get<ApiResponse<User[]>>(this.baseUrl+"technicians").toPromise()
+      return this.http.get<ApiResponse<User[]>>(this.pageUrl+"technicians").toPromise()
     }
 
     // getAddress(item: string): Observable<Address> {
-    //   return this.http.get<Address>(this.baseUrl + item)
+    //   return this.http.get<Address>(this.pageUrl + item)
     //     .pipe(tap((data) => console.log('oneAddres',data)+JSON.stringify(data)));
     // }
     

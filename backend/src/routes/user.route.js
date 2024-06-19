@@ -10,13 +10,10 @@ const router = Router();
  */
 router.get('/', getAllUsers);
 
-router.get('/login', login);
+router.post('/login', login);
 
 router.get('/:id', getUser);
-/**
- * Crea un nuevo usuario
- */
-router.post('/',  validUser, newUser);
 
+router.post('/',  validUser, newUser);
 
 module.exports = router;

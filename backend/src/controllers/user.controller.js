@@ -25,7 +25,6 @@ const getAllUsers = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const body = matchedData(req);
-    console.log('body --> ', body);
     const data = await User.findById(body.id);
     res.send({data})
   } catch (e) {
@@ -39,7 +38,7 @@ const login = async (req, res, next) => {
     const data = await User.findOne(body);
     res.send({data})
   } catch (e) {
-    handleHttpError(res, "ERROR_GET_USER");
+    handleHttpError(res, "ERROR_LOGIN_USER");
   }  
 }; 
 

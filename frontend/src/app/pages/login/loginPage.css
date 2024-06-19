@@ -1,41 +1,40 @@
   /*Login V2*/
   
-  .card-500 {
-    width: 500px;
+.card-500 {
+    width: 250px;
     margin-bottom: 0px;
-    padding: 3rem !important;
-    background-color: #FFC107 !important;
+    padding: 2rem !important;
+    background-color: #ac47e7 !important;
 }
 
 #ip-background{
-    background-image: url('../../../assets/images/no_user.jpg');
+    /* background-image: url('../../../assets/images/no_user.jpg'); */
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 #titleLogin {
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
 }
 
 #titleLogin,
 #subtitleLogin {
     color: #fff!important;
-    font-weight: 200;
+    font-weight: 80;
 }
 
 #titleLogin h4 {
-    font-size: 2.125rem;
+    font-size: 1.75rem;
     line-height: 2.5rem;
     font-weight: 200;
 }
 
 #subtitleLogin h6 {
-    font-size: 1.25rem !important;
-    line-height: 2rem !important;
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
     font-weight: 400!important;
 }
 
- ::ng-deep .login .mat-form-field,
+ /* ::ng-deep .login .mat-form-field,
  ::ng-deep .login .mat-form-field-label,
  ::ng-deep .login .mat-focused .mat-form-field-placeholder {
     color: white !important;
@@ -51,6 +50,7 @@
 }
 /*Quitar fondo de autocompletado*/
 
+/*
  ::ng-deep .login input:-webkit-autofill,
  ::ng-deep .login input:-webkit-autofill:hover,
  ::ng-deep .login input:-webkit-autofill:focus,
@@ -60,7 +60,9 @@
 }
 ::ng-deep .login input{
       caret-color: #fff;
-  }
+  } 
+*/
+
 button.submitV2 {
     width: 100%;
     background-color: #ffb600 !important;
@@ -70,7 +72,7 @@ button.submitV2 {
     font-weight: 400;
     margin-top: 1em;
 }
-
+/* 
  ::ng-deep .login.mat-checkbox {
     margin-top: 1em;
 }
@@ -90,4 +92,5 @@ button.submitV2 {
  ::ng-deep .login.mat-error,
  ::ng-deep .login .mat-error {
     color: white !important;
-}
+} 
+*/

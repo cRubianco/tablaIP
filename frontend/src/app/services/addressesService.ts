@@ -13,6 +13,7 @@ export class AddressService  {
    * url 
    */
   protected baseUrl: string = environment.SERVER + Constants.URL.API_PATH;
+  protected pageUrl: string = this.baseUrl+'address/';  
   protected name: string = "Dirección IP";
 
   constructor(protected http: HttpClient) {}
@@ -20,8 +21,8 @@ export class AddressService  {
   //======== metodos ==========
 
   getAddresses(): Observable<Address[]> {
-    return this.http.get<Address[]>(this.baseUrl)
-      .pipe(tap((data) => console.log("all addresses",data)+ JSON.stringify(data)));
+    return this.http.get<Address[]>(this.pageUrl)
+      .pipe(tap((data) => JSON.stringify(data)));
   }
 
   /**
@@ -29,28 +30,28 @@ export class AddressService  {
    * @param item
    */
   getAddress(item: string): Observable<Address> {
-    return this.http.get<Address>(this.baseUrl + item)
+    return this.http.get<Address>(this.pageUrl + item)
       .pipe(tap((data) => console.log('oneAddres',data)+JSON.stringify(data)));
   }
 
   addAddress(item: Address) {
-    return this.http.post(this.baseUrl, item);
+    return this.http.post(this.pageUrl, item);
   }
 
   updateAddress(id: string, item: Address): Observable<Address> {
-    return this.http.put<Address>(this.baseUrl+id, item)
+    return this.http.put<Address>(this.pageUrl+id, item)
   }
 
   saveAddress(item: Address) {
     if (item._id) {
-      return this.http.put<Address>(this.baseUrl+item._id, item)
+      return this.http.put<Address>(this.pageUrl+item._id, item)
     } else {
-      return this.http.post<Address>(this.baseUrl, item)
+      return this.http.post<Address>(this.pageUrl, item)
     }
   }
 
   deleteAddress(item: string) {
-    return this.http.delete(this.baseUrl+item)
+    return this.http.delete(this.pageUrl+item)
     .subscribe();
   }
 

@@ -5,6 +5,7 @@ import { AddressesPage } from '@pages/address/addressesPage';
 import { RedirectPage } from '@pages/common/redirectPage';
 import { DashboardPage } from '@pages/dashboard';
 import { BasePage } from '@pages/layout/basePage';
+import { LoginPage } from '@pages/login/loginPage';
 import {Constants} from "@utils/constants";
 import { CanDeactivateGuard } from '@utils/routing/canDeactivateGuard';
 import { DirectAccessGuard } from '@utils/routing/directAccessGuard';
@@ -16,7 +17,7 @@ const routes: Routes = [
   //pagina inicial
   { path: '', component: DashboardPage},
   //login
-  // { path: Constants.URL.LOGIN, component: LoginPage},
+  { path: Constants.URL.LOGIN, component: LoginPage},
   // { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
   
   { path: Constants.URL.BASEPAGE, component: BasePage },

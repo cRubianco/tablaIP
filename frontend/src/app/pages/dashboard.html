@@ -1,12 +1,14 @@
 <div fxLayout="row wrap" fxFlexFill>
-	<div fxFlex="20" fxflex.md="20" fxFlex.xs="100" fxFlexFill fxLayoutAlign="start center">
+	<div fxFlex="40" fxflex.md="40" fxFlex.xs="100" fxFlexFill fxLayoutAlign="center">
 		<form  [formGroup]="form" fxLayout="row" fxFlexFill>
 			<mat-card class="card-800"> 
 				<mat-card-actions fxLayoutAlign="center">
-					<button mat-flat-button class="submitV2" (click)="enter()" >Ingresar</button>
+					<login-page></login-page>
+					<!-- <br>
+					<button mat-flat-button class="submitV2" (click)="enter()" >Ingresar</button> -->
 				</mat-card-actions>
 			</mat-card>
 		</form>
 	</div>
-  <div fxFlex="60" fxFlexFill fxLayoutAlign="start center" id="background-logo" ></div>
+  <div fxFlex="60" fxFlexFill fxLayoutAlign="center" id="background-logo" ></div>
 </div>
