@@ -4,13 +4,22 @@ import { PopupService } from "./popupService";
 import { ApiResponse } from "@model/dto/apiResponse";
 import { User } from "@model/dto/user";
 import { Role } from "@model/enum/role";
+import { Constants } from "@utils/constants";
+import { environment } from "src/environments/environment";
 
 /**
  * Servicio de authenticacion
  */
 @Injectable()
 export class AuthService {
-  private baseUrl: string="auth/"; //url base
+
+  /**
+   * url 
+   */
+  protected baseUrl: string = environment.SERVER + Constants.URL.API_PATH;
+  protected pageUrl: string = 'users/';  
+  protected url: string = this.baseUrl+this.pageUrl
+
   private user: User; //usuario logueado
   private menu: object[]=[]; //menu
 
@@ -30,8 +39,8 @@ export class AuthService {
    * @param password
    */
   login(user?: string, password?: string) {
-    if (user && password) return this.http.post(this.baseUrl + 'login', { user, password }).toPromise();
-    else return this.http.get(this.baseUrl + 'login').toPromise();
+    if (user && password) return this.http.post(this.url + 'login', { user, password }).toPromise();
+    else return this.http.get(this.url + 'login').toPromise();
   }
 
   /**
