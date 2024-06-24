@@ -1,7 +1,8 @@
 const { matchedData } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const User = require('../models/user.js');
-const { handleHttpError } = require('../utils/handleErrors.js');
+const { handleError, handleHttpError } = require('../utils/handleErrors.js');
 
 /**
  * Obtener todos los usuarios.
@@ -18,14 +19,14 @@ const getAllUsers = async (req, res, next) => {
 }
 
 /**
- * Obtener un usuario por ID
+ * Obtener un usuario 
  * @param {*} req 
  * @param {*} res 
  */
 const getUser = async (req, res, next) => {
   try {
     const body = matchedData(req);
-    const data = await User.findById(body.id);
+    const data = await User.findOne(body.username);
     res.send({data})
   } catch (e) {
     handleHttpError(res, "ERROR_GET_USER");
@@ -34,23 +35,41 @@ const getUser = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const body = matchedData(req);
-    const data = await User.findOne(body);
-    res.send({data})
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) {
+      return res.json({ error: 'Usuario inexistente' });
+    }
+    const pass = bcrypt.compareSync(req.body.password, user.password)
+    if (!pass) {
+      return res.json({ error: 'Error en usuario/contraseña' });
+    }
+    res.send({user})
   } catch (e) {
     handleHttpError(res, "ERROR_LOGIN_USER");
   }  
 }; 
 
-const newUser = async (req, res, next) => {
-  // { username: , passwd: ,  role: } 
-  try {
-    const body = matchedData(req);
-    const data = await User.create(body);
-    res.send({data});
-  } catch (err) {
-    handleHttpError(res, "ERROR_CREATE_USER");
-  }
+const register = async (req, res) => {
+
+  const user = await User.findOne({ username: req.body.username });
+  console.log('existe user? -- ', user);
+  console.log('user -- ', req.body);
+
+  if (!user) {
+    console.log('Entro -- ');
+    // req.body.password = bcrypt.hashSync(req.body.password, 10);
+    // try {
+    //   // const body = matchedData(req);
+    //   const data = await User.create(req.body);
+    //   res.json(data);
+  
+    // } catch (err) {
+    //   console.log('---- error ----', err);
+    //   handleHttpError(res, "ERROR_CREATE_USER");
+    // }  
+  } 
+  console.log(`El usuario ${user.username} ya existe`);
+  
 };
 
-module.exports = { getAllUsers, getUser, login, newUser };
+module.exports = { getAllUsers, getUser, login, register };
