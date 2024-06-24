@@ -52,23 +52,19 @@ const login = async (req, res, next) => {
 const register = async (req, res) => {
 
   const user = await User.findOne({ username: req.body.username });
-  console.log('existe user? -- ', user);
-  console.log('user -- ', req.body);
+  if (user) {
+    return res.json({ error: 'El usuario ya está registrado' });
+  }
 
-  if (!user) {
-    console.log('Entro -- ');
-    // req.body.password = bcrypt.hashSync(req.body.password, 10);
-    // try {
-    //   // const body = matchedData(req);
-    //   const data = await User.create(req.body);
-    //   res.json(data);
-  
-    // } catch (err) {
-    //   console.log('---- error ----', err);
-    //   handleHttpError(res, "ERROR_CREATE_USER");
-    // }  
-  } 
-  console.log(`El usuario ${user.username} ya existe`);
+  req.body.password = bcrypt.hashSync(req.body.password, 10);
+  try {
+    // const body = matchedData(req);
+    const data = await User.create(req.body);
+    res.json(data);
+
+  } catch (err) {
+    handleHttpError(res, "ERROR_CREATE_USER");
+  }  
   
 };
 
