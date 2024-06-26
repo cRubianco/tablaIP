@@ -35,11 +35,11 @@ export class AuthService {
 
   /**
    * login
-   * @param user
+   * @param username
    * @param password
    */
-  login(user?: string, password?: string) {
-    if (user && password) return this.http.post(this.url + 'login', { user, password }).toPromise();
+  login(username?: string, password?: string) {
+    if (username && password) return this.http.post(this.url + 'login', { username, password }).toPromise();
     else return this.http.get(this.url + 'login').toPromise();
   }
 

@@ -8,7 +8,7 @@ import { Constants } from '@utils/constants';
 import { MatDialog } from '@angular/material/dialog';
 import { AddressPage } from '@pages/address/addressPage';
 import { Address } from '@model/address';
-import { UtilServices } from '@services/utilServices';
+import { AuthService } from '@services/authService';
 
 /**
  * Pagina base y layout
@@ -24,7 +24,7 @@ export class BasePage extends OnDestroyMixin {
   address!: Address;
 
   constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer,
-              private dialog: MatDialog, public utilService: UtilServices) {
+              private dialog: MatDialog, public authService: AuthService) {
       super();
       // set screenWidth on page load
       this.screenWidth = window.innerWidth;

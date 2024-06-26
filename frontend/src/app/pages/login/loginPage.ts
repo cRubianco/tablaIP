@@ -50,14 +50,12 @@ export class LoginPage extends OnDestroyMixin implements OnInit {
   //================== Methods ===================
   
   login(): Promise<any> {
-    return this.authService.login(this.form.controls['username'].value,this.form.controls['password'].value)
-      .then(response=> {
-        console.log("---  ", response);
-        
+    return this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value)
+      .then(response=> {      
         switch(response) {
           case 200:
             // if (this.form.controls.rememberMe.value==true)
-            //   localStorage.setItem(Constants.LOCAL_STORE.REMEMBER,this.form.controls.user.value);
+              localStorage.setItem(Constants.LOCAL_STORE.REMEMBER,this.form.controls['username'].value);
             this.enter();
             break;
           case 400:

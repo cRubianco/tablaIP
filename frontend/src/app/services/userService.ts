@@ -5,6 +5,7 @@ import { ApiResponse } from "@model/dto/apiResponse";
 import { User } from "@model/dto/user";
 import { environment } from "src/environments/environment";
 import { Constants } from "@utils/constants";
+import { firstValueFrom } from "rxjs";
 
 /**
  * Servicio Usuario
@@ -22,6 +23,12 @@ export class UserService {
   // ============= constructor ====================
   constructor(protected http: HttpClient, protected utilService: UtilServices) {}
 
+  register(formValue: any) {
+    return firstValueFrom(
+      this.http.post<any>(this.pageUrl+'register', formValue)
+    )
+  }
+  
   /**
    * Recupera los usuarios con rol Tecnico
    */

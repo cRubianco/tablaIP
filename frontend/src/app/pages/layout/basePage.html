@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen class="mat-typography">
 
 <!-- menu -->
-	<layout-header *ngIf="this.utilService.isLogged()"></layout-header>
+	<layout-header *ngIf="this.authService.isLogged()"></layout-header>
 
 	<div id="layoutPrincipal" fxLayout="column" fxFlexFill>
 		<!-- <main class="content" [ngStyle]="{'padding': '20px' }"> -->
@@ -10,6 +10,6 @@
 		</main>	
 	</div>
 
-	<layout-footer *ngIf="this.utilService.isLogged()" ></layout-footer>
+	<layout-footer *ngIf="this.authService.isLogged()" ></layout-footer>
 
 </mat-sidenav-container>	

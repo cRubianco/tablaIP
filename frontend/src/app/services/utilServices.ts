@@ -21,11 +21,6 @@ export class UtilServices {
   }
 
   //===================== methods =================
-  
-  isLogged() {
-    return true;
-    // return false;
-  }
 
   /**
    * expone los eventos del router
