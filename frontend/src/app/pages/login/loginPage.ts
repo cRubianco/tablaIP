@@ -35,9 +35,10 @@ export class LoginPage extends OnDestroyMixin implements OnInit {
      //create reactive form
      this.form = this.fb.group({
       username: [localStorage.getItem(Constants.LOCAL_STORE.REMEMBER), [Validators.required, Validators.maxLength(50), CustomValidators.alpha]],
-      password: [{value: null}, [Validators.required, Validators.maxLength(20)]],
+      password: ['', [Validators.required, Validators.maxLength(20)]],
       role: [{value:null}]
     });
+    
     if (this.data != null) {
       Object.keys(this.data).forEach(name => {
         if (this.form.controls[name]) {
@@ -50,21 +51,25 @@ export class LoginPage extends OnDestroyMixin implements OnInit {
   //================== Methods ===================
   
   login(): Promise<any> {
-    return this.authService.login(this.form.controls['username'].value,this.form.controls['password'].value)
-      .then(response=> {
-        console.log("---  ", response);
-        
+    return this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value)
+    .then(response=> {
+        console.log('hola  ', response);
         switch(response) {
           case 200:
             // if (this.form.controls.rememberMe.value==true)
-            //   localStorage.setItem(Constants.LOCAL_STORE.REMEMBER,this.form.controls.user.value);
+            console.log('llego');
+            
+              localStorage.setItem(Constants.LOCAL_STORE.REMEMBER,this.form.controls['username'].value);
             this.enter();
             break;
           case 400:
+            console.log('400');
+            
             Utils.resetFormControlValue(this.form.controls['password']);
             this.error = "Sus credenciales son incorrectas. Intente nuevamente o contacte al Administrador.";
             break;
-          case 401:
+            case 401:
+            console.log('401');
             Utils.resetFormControlValue(this.form.controls['password']);
             this.error = "Debe ingresar su contraseña para iniciar sesión.";
             break;

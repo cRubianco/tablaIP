@@ -2,30 +2,28 @@
   <div fxFlex="50" fxflex.md="50" fxFlex.xs="100" fxFlexFill fxLayoutAlign="start center">
     <form  [formGroup]="form" fxLayout="row" fxFlexFill>
       <mat-card class="card-500">
-          <!-- <mat-card-header> -->
+
           <mat-card-title id="titleLogin">
               <h4>Bienvenido</h4>
           </mat-card-title>
           <mat-card-subtitle id="subtitleLogin">
               <h6>Ingrese usuario y contraseña</h6>
           </mat-card-subtitle>
-          <!-- </mat-card-header> -->
+
           <mat-card-content fxLayout="column" style="margin-top:4vh">
               <form-field-input-type class="login" matIcon="person_outline" fxFlex="100" fxFlex.xs="100"
                   [form]="form" type="text" name="Usuario" [maxLength]="50" [required] controlName="username">
               </form-field-input-type>
-              <form-field-input-type matIcon="lock" class="login" fxFlex="100" fxFlex.xs="100" [form]="form"
-                  type="password" name="Contraseña" [maxLength]="20" controlName="password">
+              <form-field-input-type class="login" matIcon="lock" fxFlex="100" fxFlex.xs="100"
+                  [form]="form" type="password" name="Contraseña" [maxLength]="20" controlName="password">
               </form-field-input-type>
           </mat-card-content>
-
-          <!-- <p *ngIf="error" class="mat-error login textInMultiline">{{error}}</p> -->
 
           <mat-card-actions fxLayoutAlign="center">
               <button mat-flat-button class="submitV2" (click)="login()" [disabled]="!form.valid">Ingresar</button>
           </mat-card-actions>
+          
       </mat-card>
   </form>
   </div>
-  <!-- <div fxFlex="70" fxflex.md="70" fxFlex.xs="0" fxFlexFill id="ip-background"></div> -->
 </div>

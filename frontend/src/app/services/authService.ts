@@ -39,7 +39,7 @@ export class AuthService {
    * @param password
    */
   login(user?: string, password?: string) {
-    if (user && password) return this.http.post(this.url + 'login', { user, password }).toPromise();
+    if (user && password) return this.http.post(this.url+'login', { user, password }).toPromise();
     else return this.http.get(this.url + 'login').toPromise();
   }
 

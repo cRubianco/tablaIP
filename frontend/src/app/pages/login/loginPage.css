@@ -1,5 +1,3 @@
-  /*Login V2*/
-  
 .card-500 {
     width: 250px;
     margin-bottom: 0px;
@@ -8,7 +6,6 @@
 }
 
 #ip-background{
-    /* background-image: url('../../../assets/images/no_user.jpg'); */
     background-repeat: no-repeat;
 }
 
@@ -34,34 +31,6 @@
     font-weight: 400!important;
 }
 
- /* ::ng-deep .login .mat-form-field,
- ::ng-deep .login .mat-form-field-label,
- ::ng-deep .login .mat-focused .mat-form-field-placeholder {
-    color: white !important;
-}
-
- ::ng-deep .login .mat-form-field-underline,
- ::ng-deep .login .mat-form-field-underline .mat-form-field-ripple {
-    background-color: white !important;
-}
-
- ::ng-deep .login .mat-input-element .mat-form-field-autofill-control {
-    background: none !important;
-}
-/*Quitar fondo de autocompletado*/
-
-/*
- ::ng-deep .login input:-webkit-autofill,
- ::ng-deep .login input:-webkit-autofill:hover,
- ::ng-deep .login input:-webkit-autofill:focus,
- ::ng-deep .login input:-webkit-autofill:active {
-    transition: background-color 5000s;
-    -webkit-text-fill-color: #fff !important;
-}
-::ng-deep .login input{
-      caret-color: #fff;
-  } 
-*/
 
 button.submitV2 {
     width: 100%;
@@ -72,25 +41,3 @@ button.submitV2 {
     font-weight: 400;
     margin-top: 1em;
 }
-/* 
- ::ng-deep .login.mat-checkbox {
-    margin-top: 1em;
-}
-
- ::ng-deep .login .mat-checkbox-label {
-    color: white !important;
-}
-
- ::ng-deep .login .mat-checkbox-frame {
-    border: 1px solid white !important;
-}
-
- ::ng-deep .login .mat-checkbox-input:checked~.mat-checkbox-background {
-    background: #ffb600;
-}
-
- ::ng-deep .login.mat-error,
- ::ng-deep .login .mat-error {
-    color: white !important;
-} 
-*/
