@@ -1,5 +1,6 @@
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
+
 const validateResults = require('../utils/validate.js')
 
 
@@ -17,9 +18,9 @@ const validPassword = [
   }
 ];
 
-const checkToken = (req, rest, next) => {
+const checkToken = (req, res, next) => {
   if (!req.headers['authorization']) {
-    return res.json({ error: "No tiene el token"})
+    return res.json({ error: "La cabezera no tiene el token"})
   }
 
   const token = req.headers['authorization'];

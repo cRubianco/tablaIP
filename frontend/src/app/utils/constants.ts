@@ -25,6 +25,11 @@ import * as moment from "moment";
       REMEMBER: "rememberMe",
       REDIRECT: "redirect", 
     },
+    
+    TOKEN: { // token
+      TOKEN: "token",
+    },
+
     SESSION_STORE: {//session store
       PAGES: "pages" //guarda los filtros de las paginas abm
     },
