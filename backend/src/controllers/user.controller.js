@@ -71,9 +71,11 @@ const register = async (req, res) => {
 function createToken(user) {
   const payload = {
     user_id: user._id,
-    user_role: user._role
+    user_role: user.role
   }
-  return jwt.sign(payload, 'secretword')
+  return jwt.sign(payload, 'secretword', {
+    expiresIn: 60*60
+  })
 }
 
 module.exports = { getAllUsers, getUser, login, register };
