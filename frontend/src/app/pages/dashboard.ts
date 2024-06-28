@@ -46,7 +46,7 @@ export class DashboardPage extends OnDestroyMixin implements OnInit {
     }
 
   /**
-   * ingresa a la tabla.
+   * ingresa a la página de login.
    */
   enter(){
     this.utilService.navigate(Constants.URL.LOGIN);

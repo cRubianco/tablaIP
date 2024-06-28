@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, tap } from "rxjs";
 
 import { environment } from "src/environments/environment";
@@ -21,12 +21,17 @@ export class AddressService  {
   //======== metodos ==========
 
   getAddresses(): Observable<Address[]> {
-    return this.http.get<Address[]>(this.pageUrl)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': localStorage.getItem(Constants.TOKEN.TOKEN)
+      })
+    }
+    return this.http.get<Address[]>(this.pageUrl, httpOptions)
       .pipe(tap((data) => JSON.stringify(data)));
   }
 
   /**
-   * recupera item
+   * recupera una dirección IP
    * @param item
    */
   getAddress(item: string): Observable<Address> {
@@ -34,10 +39,18 @@ export class AddressService  {
       .pipe(tap((data) => console.log('oneAddres',data)+JSON.stringify(data)));
   }
 
+  /**
+   * agrega una dirección IP
+   * @param item
+   */
   addAddress(item: Address) {
     return this.http.post(this.pageUrl, item);
   }
 
+  /**
+   * actualiza una dirección IP
+   * @param item
+   */
   updateAddress(id: string, item: Address): Observable<Address> {
     return this.http.put<Address>(this.pageUrl+id, item)
   }
@@ -50,6 +63,10 @@ export class AddressService  {
     }
   }
 
+  /**
+   * borra una dirección IP
+   * @param item
+   */  
   deleteAddress(item: string) {
     return this.http.delete(this.pageUrl+item)
     .subscribe();

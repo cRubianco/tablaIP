@@ -24,15 +24,10 @@ import { AuthService } from '@services/authService';
     MatSnackBarModule,
   ],
   providers:[
-    // {
-      // provide: HTTP_INTERCEPTORS, useClass: ApiHttpInterceptor, multi: true
-    // },
     // Servicio authorización
     AuthService,
-    
     // servicios utilidades
     UtilServices, I18nService, AddressService, ParametersService, PopupService,
-  
     // servicios navegación
     DirectAccessGuard, CanDeactivateGuard, DirectAccessAllow,
   ]

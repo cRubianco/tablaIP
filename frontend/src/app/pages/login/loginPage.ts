@@ -5,9 +5,7 @@ import {OnDestroyMixin, untilComponentDestroyed} from "@w11k/ngx-componentdestro
 
 import { CustomValidators } from '@utils/customValidators';
 import { AuthService } from '@services/authService';
-import { Utils } from '@utils/utils';
 import { Constants } from '@utils/constants';
-import { Role } from '@model/enum/role';
 import { UtilServices } from '@services/utilServices';
 
 /**
@@ -64,43 +62,10 @@ export class LoginPage extends OnDestroyMixin implements OnInit {
           
         } else {
           localStorage.setItem(Constants.TOKEN.TOKEN, response['token']);
-          console.log('Paso por acá, ', localStorage);
-          this.enter();
-          
+          console.log('localStorage -- ', localStorage);
+          this.utilService.navigate(Constants.URL.ADDRESSES);  
         }
-        
-      //   switch(response) {
-      //     case 200:
-      //       // if (this.form.controls.rememberMe.value==true)
-      //       console.log('llego');
-            
-      //         localStorage.setItem(Constants.LOCAL_STORE.REMEMBER,this.form.controls['username'].value);
-      //       this.enter();
-      //       break;
-      //     case 400:
-      //       console.log('400');
-            
-      //       Utils.resetFormControlValue(this.form.controls['password']);
-      //       this.error = "Sus credenciales son incorrectas. Intente nuevamente o contacte al Administrador.";
-      //       break;
-      //       case 401:
-      //       console.log('401');
-      //       Utils.resetFormControlValue(this.form.controls['password']);
-      //       this.error = "Debe ingresar su contraseña para iniciar sesión.";
-      //       break;
-      //   }
       })
   }
-
-  /**
-  * ingresa al dashboard o pagina sin rol.
-  */
-  private enter() {
-    const role:Role = this.authService.getUser().role;
-    if (role && role!=Role.USER)
-      this.utilService.navigate(Constants.URL.DASHBOARD);
-    else
-      this.utilService.navigate(Constants.URL.NO_ROLE);
-   }
 
 }

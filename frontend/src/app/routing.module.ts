@@ -18,11 +18,9 @@ const routes: Routes = [
   { path: '', component: DashboardPage},
   //login
   { path: Constants.URL.LOGIN, component: LoginPage},
-  // { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
-  
   { path: Constants.URL.BASEPAGE, component: BasePage },
-  { path: Constants.URL.ADDRESS, component: AddressPage },
-  { path: Constants.URL.ADDRESSES, component: AddressesPage},
+  { path: Constants.URL.ADDRESS, component: AddressPage, canActivate:[DirectAccessGuard], canDeactivate: [CanDeactivateGuard] },
+  { path: Constants.URL.ADDRESSES, component: AddressesPage, canActivate:[DirectAccessGuard]},
   // { path: '404', component: ErrorHtmlComponent },
   //redireccion
   { path: '**', redirectTo: '', pathMatch: 'full'}
